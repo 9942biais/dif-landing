@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>DIF — Design Inner Force</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0B1220;
+      --bg2: #111827;
+      --bg3: #1a2438;
+      --accent: #C8F04A;
+      --accent2: #F0C94A;
+      --text: #F0F4FF;
+      --muted: #8A96B0;
+      --card: #161F30;
+      --border: rgba(255,255,255,0.07);
+      --radius: 16px;
+      --max: 430px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: var(--max);
+      overflow-x: hidden;
+    }
+
+    /* ── Fade-in animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Shared ── */
+    .section { padding: 64px 24px; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(200,240,74,0.1);
+      border: 1px solid rgba(200,240,74,0.25);
+      border-radius: 100px;
+      padding: 4px 12px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .section-sub {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ════════════════════════════════
+       1. HERO
+    ════════════════════════════════ */
+    .hero {
+      position: relative;
+      padding: 80px 24px 72px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(200,240,74,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 90% 110%, rgba(240,201,74,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-logo {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-logo::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .hero-kicker {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+    .hero-title {
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 20px;
+      word-break: keep-all;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      word-break: keep-all;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #0B1220;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 16px 28px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(200,240,74,0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,240,74,0.35); }
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    /* ════════════════════════════════
+       2. PAIN POINT
+    ════════════════════════════════ */
+    .pain { background: var(--bg2); }
+    .pain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+    }
+    .pain-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pain-item p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text);
+      word-break: keep-all;
+    }
+    .pain-item p strong { color: var(--accent); }
+    .pain-answer {
+      margin-top: 32px;
+      padding: 22px 18px;
+      background: linear-gradient(135deg, rgba(200,240,74,0.08), rgba(240,201,74,0.05));
+      border: 1px solid rgba(200,240,74,0.2);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+    .pain-answer p {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+    .pain-answer span { color: var(--accent); }
+
+    /* ════════════════════════════════
+       3. ABOUT DIF
+    ════════════════════════════════ */
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      margin-bottom: 16px;
+    }
+    .about-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--accent2);
+    }
+    .about-card p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--muted);
+      word-break: keep-all;
+    }
+    .fields-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .field-chip {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px;
+    }
+
+    /* ════════════════════════════════
+       MENTORS
+    ════════════════════════════════ */
+    .mentors { background: var(--bg2); }
+    .mentor-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .mentor-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 18px;
+    }
+    .mentor-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .mentor-initial {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0B1220;
+      font-size: 18px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .mentor-card:nth-child(1) .mentor-initial { background: var(--accent); }
+    .mentor-card:nth-child(2) .mentor-initial { background: var(--accent2); }
+    .mentor-card:nth-child(3) .mentor-initial { background: #4A9AF0; }
+    .mentor-name {
+      font-size: 17px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .mentor-role {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+    .mentor-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .mentor-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+    .mentor-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(200,240,74,0.75);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* ════════════════════════════════
+       GALLERY (현장 기록)
+    ════════════════════════════════ */
+    .gallery { background: var(--bg2); }
+
+    /* 탭 버튼 */
+    .gallery-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-bottom: 24px;
+      padding-bottom: 2px;
+    }
+    .gallery-tabs::-webkit-scrollbar { display: none; }
+    .gtab {
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .gtab.active {
+      background: var(--accent);
+      color: #0B1220;
+      border-color: var(--accent);
+    }
+
+    /* 탭 패널 */
+    .gallery-panel { display: none; }
+    .gallery-panel.active { display: block; }
+
+    /* 2열 마소너리 — 좌→우 순서, 빈공간 없음 */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1px;
+      gap: 8px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    /* ════════════════════════════════
+       4. 3대 트랙
+    ════════════════════════════════ */
+    .tracks { background: var(--bg2); }
+    .track-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .track-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .track-card.t1::before { background: linear-gradient(90deg, #C8F04A, #82D926); }
+    .track-card.t2::before { background: linear-gradient(90deg, #F0C94A, #F0894A); }
+    .track-card.t3::before { background: linear-gradient(90deg, #4A9AF0, #C84AF0); }
+    .track-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .track-name {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .track-card.t1 .track-name { color: #C8F04A; }
+    .track-card.t2 .track-name { color: #F0C94A; }
+    .track-card.t3 .track-name { color: #4A9AF0; }
+    .track-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 18px;
+      word-break: keep-all;
+    }
+    .track-items {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .track-item {
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .track-item::before {
+      content: '→';
+      color: var(--muted);
+      flex-shrink: 0;
+      font-size: 12px;
+      margin-top: 1px;
+    }
+
+    /* ════════════════════════════════
+       5. PROGRAMS
+    ════════════════════════════════ */
+    .programs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .prog-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .prog-icon { font-size: 26px; }
+    .prog-title {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+    .prog-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    /* ════════════════════════════════
+       CURRICULUM
+    ════════════════════════════════ */
+    .curriculum { background: var(--bg2); }
+    .coaching-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .coaching-point {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 14px;
+    }
+    .coaching-point strong {
+      display: block;
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .coaching-point span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+    .track-detail {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    .track-detail:last-child { margin-bottom: 0; }
+    .track-detail summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 22px 18px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .track-detail summary::-webkit-details-marker { display: none; }
+    .track-detail summary::after {
+      content: '+';
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .track-detail[open] summary::after { content: '-'; }
+    .detail-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .detail-title {
+      font-size: 19px;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      word-break: keep-all;
+    }
+    .track-detail.a .detail-title { color: var(--accent); }
+    .track-detail.b .detail-title { color: var(--accent2); }
+    .track-detail.c .detail-title { color: #4A9AF0; }
+    .detail-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+    .week-list {
+      display: grid;
+      gap: 6px;
+      padding: 0 18px 18px;
+    }
+    .week-row {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 9px 0;
+      border-top: 1px solid var(--border);
+    }
+    .week-row span:first-child {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--accent);
+    }
+    .week-row span:last-child {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+    .output-wrap {
+      padding: 0 18px 22px;
+    }
+    .output-title {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+    .output-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .output-chip {
+      font-size: 12px;
+      color: var(--text);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 10px;
+      word-break: keep-all;
+    }
+
+    /* ════════════════════════════════
+       6. ACTIVITIES
+    ════════════════════════════════ */
+    .activities { background: var(--bg2); }
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .activity-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .activity-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .activity-text h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .activity-text p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    /* ════════════════════════════════
+       7. FOR WHOM
+    ════════════════════════════════ */
+    .whom-list { display: flex; flex-direction: column; gap: 12px; }
+    .whom-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+    }
+    .whom-badge {
+      min-width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #0B1220;
+      flex-shrink: 0;
+    }
+    .whom-badge.b1 { background: var(--accent); }
+    .whom-badge.b2 { background: var(--accent2); }
+    .whom-badge.b3 { background: #4A9AF0; }
+    .whom-text h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .whom-text p { font-size: 13px; color: var(--muted); line-height: 1.65; word-break: keep-all; }
+
+    /* ════════════════════════════════
+       8. RECRUITMENT
+    ════════════════════════════════ */
+    .recruit { background: var(--bg2); }
+    .recruit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .recruit-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 8px;
+      min-width: 0;
+      text-align: center;
+    }
+    .recruit-box .label {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--muted);
+      letter-spacing: 0;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      white-space: nowrap;
+    }
+    .recruit-box .value {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.35;
+      word-break: keep-all;
+    }
+    .recruit-box .value em { font-style: normal; color: var(--accent); }
+    .recruit-note {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+    }
+    .recruit-note p { font-size: 13px; color: var(--muted); line-height: 1.7; word-break: keep-all; }
+    .recruit-note p strong { color: var(--text); }
+
+    /* ════════════════════════════════
+       FIRST COHORT OFFER
+    ════════════════════════════════ */
+    .offer { background: var(--bg2); }
+    .season-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .season-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 14px;
+    }
+    .season-card .label {
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .season-card .value {
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+    .price-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .price-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 14px;
+    }
+    .price-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .price-track {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text);
+      word-break: keep-all;
+    }
+    .price-target {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      text-align: right;
+      word-break: keep-all;
+    }
+    .price-values {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+    .price-value {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 6px;
+      text-align: center;
+      min-width: 0;
+    }
+    .price-value.highlight {
+      background: rgba(200,240,74,0.08);
+      border-color: rgba(200,240,74,0.32);
+    }
+    .price-value span {
+      display: block;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 5px;
+      white-space: nowrap;
+    }
+    .price-value strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+    .price-value.highlight strong { color: var(--accent); }
+    .path-heading {
+      margin: 8px 0 14px;
+    }
+    .path-heading h3 {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 6px;
+      word-break: keep-all;
+    }
+    .path-heading p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+    .path-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .path-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 14px;
+    }
+    .path-item strong {
+      display: block;
+      font-size: 15px;
+      color: var(--accent2);
+      margin-bottom: 12px;
+      word-break: keep-all;
+    }
+    .path-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .path-meta p {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 8px;
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+    .path-meta b {
+      display: block;
+      color: var(--accent);
+      font-weight: 900;
+    }
+    .path-meta span {
+      display: block;
+    }
+    .path-item > span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    /* ════════════════════════════════
+       9. CTA
+    ════════════════════════════════ */
+    .cta {
+      text-align: center;
+      padding: 72px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 90% 70% at 50% 100%, rgba(200,240,74,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .cta-title {
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 14px;
+      word-break: keep-all;
+    }
+    .cta-title em { font-style: normal; color: var(--accent); }
+    .cta-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      word-break: keep-all;
+    }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #0B1220;
+      font-weight: 900;
+      font-size: 16px;
+      padding: 18px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 40px rgba(200,240,74,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      width: 100%;
+      max-width: 320px;
+      justify-content: center;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 48px rgba(200,240,74,0.4); }
+    .cta-sub { margin-top: 16px; font-size: 12px; color: var(--muted); }
+
+    footer {
+      text-align: center;
+      padding: 28px 24px 40px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    footer strong { color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ① HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-logo">DIF</div>
+    <p class="hero-kicker">Design Inner Force</p>
+    <h1 class="hero-title">
+      디자인,<br />
+      이제 <em>방향이</em> 생깁니다.
+    </h1>
+    <p class="hero-desc">
+      학교에서 배우지 못한 포트폴리오·취업·창업의 실전 노하우.<br />
+      DIF가 당신의 디자인 커리어에 내면의 힘을 더합니다.
+    </p>
+    <a href="#cta" class="btn-primary">
+      지금 무료 상담 신청
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h10M9 4l4 4-4 4" stroke="#0B1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ② PAIN POINT -->
+  <section class="section pain">
+    <div class="tag">이런 고민 있으신가요?</div>
+    <h2 class="section-title reveal">혼자 고민하다<br />멈춰버린 적 있나요?</h2>
+    <div class="pain-list">
+      <div class="pain-item reveal">
+        <span class="pain-icon">📁</span>
+        <p><strong>포트폴리오를 만들긴 했는데,</strong> 어떤 방향이 맞는지 모르겠어요. 기업이 원하는 게 뭔지도 몰라서 불안합니다.</p>
+      </div>
+      <div class="pain-item reveal">
+        <span class="pain-icon">😶</span>
+        <p><strong>주변에 물어볼 사람이 없어요.</strong> 취업 준비를 혼자 하다 보니 내가 제대로 하고 있는지조차 모르겠습니다.</p>
+      </div>
+      <div class="pain-item reveal">
+        <span class="pain-icon">💡</span>
+        <p><strong>아이디어는 있는데 어떻게 창업으로 이어갈지</strong> 막막해요. 브랜딩부터 자금 조달까지 아무것도 모릅니다.</p>
+      </div>
+      <div class="pain-item reveal">
+        <span class="pain-icon">🎓</span>
+        <p><strong>학교 작업과 실무는 완전히 다른 세계</strong>인 것 같아요. 전공 수업만으로는 뭔가 부족하다는 걸 느낍니다.</p>
+      </div>
+    </div>
+    <div class="pain-answer reveal">
+      <p>그 막막함의 시작점에,<br /><span>DIF가 있습니다.</span></p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ③ ABOUT DIF -->
+  <section class="section">
+    <div class="tag">About DIF</div>
+    <h2 class="section-title reveal">디자인의 내면에서<br /> 나오는 진짜 힘</h2>
+    <p class="section-sub reveal">DIF(Design Inner Force)는 실무 경험을 갖춘 멘토와 함께 디자이너로서의 방향을 잡아가는 융합형 컨설팅 프로젝트 그룹입니다. 강의를 듣는 게 아니라, 직접 만들고 피드백받으며 성장합니다.</p>
+    <div class="about-card reveal">
+      <h3>우리가 다른 이유</h3>
+      <p>단순한 포트폴리오 클래스가 아닙니다. 학부생 과정·취업 준비 과정·창업/프리랜서 과정 3가지 트랙을 통해 각자의 목표에 맞는 실전 결과물을 만들어냅니다. 보고 따라하는 온라인 수업이 아니라 대면 1대1 코칭과 오프라인 네트워킹을 중심으로 운영됩니다.</p>
+    </div>
+    <div class="fields-wrap reveal">
+      <span class="field-chip">산업디자인</span>
+      <span class="field-chip">시각디자인</span>
+      <span class="field-chip">제품디자인</span>
+      <span class="field-chip">공간디자인</span>
+      <span class="field-chip">서비스디자인</span>
+      <span class="field-chip">공예</span>
+      <span class="field-chip">패션</span>
+      <span class="field-chip">기타 ETC</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ④ MENTORS -->
+  <section class="section mentors">
+    <div class="tag">Mentors</div>
+    <h2 class="section-title reveal">실무를 지나온<br /> 3명의 멘토진</h2>
+    <p class="section-sub reveal">제품·환경·브랜드·AI·서비스경험까지, 서로 다른 전문성을 가진 멘토가 트랙별 결과물을 함께 끌어올립니다.</p>
+
+    <div class="mentor-grid">
+      <div class="mentor-card reveal">
+        <div class="mentor-head">
+          <div class="mentor-initial">J</div>
+          <div>
+            <p class="mentor-name">멘토 J</p>
+            <p class="mentor-role">디자인 프로젝트 총괄</p>
+          </div>
+        </div>
+        <ul class="mentor-list">
+          <li>디자인업 경력 20년차, 디자인 스튜디오 대표</li>
+          <li>산업디자인과 겸임교수 10년차</li>
+          <li>기업 디자인 자문 및 컨설팅위원</li>
+          <li>제품·환경·브랜드 디자인 프로젝트 300여건 수행</li>
+        </ul>
+      </div>
+
+      <div class="mentor-card reveal">
+        <div class="mentor-head">
+          <div class="mentor-initial">K</div>
+          <div>
+            <p class="mentor-name">멘토 K</p>
+            <p class="mentor-role">AI 활용 디자인 코치</p>
+          </div>
+        </div>
+        <ul class="mentor-list">
+          <li>디자인업 경력 10년차, 디자인 스튜디오 대표</li>
+          <li>디자인 석사</li>
+          <li>인공지능사관학교 수석졸업</li>
+          <li>AI를 활용한 디자인 프로세스 코칭</li>
+        </ul>
+      </div>
+
+      <div class="mentor-card reveal">
+        <div class="mentor-head">
+          <div class="mentor-initial">C</div>
+          <div>
+            <p class="mentor-name">멘토 C</p>
+            <p class="mentor-role">서비스경험 디자인 코치</p>
+          </div>
+        </div>
+        <ul class="mentor-list">
+          <li>디자인업 경력 10년차, 디자인 스튜디오 대표</li>
+          <li>디자인 석사</li>
+          <li>시각·제품디자인 실무</li>
+          <li>서비스경험디자인 전문가</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ★ GALLERY — 실제 현장 기록 -->
+  <section class="section gallery">
+    <div class="tag">Gallery</div>
+    <h2 class="section-title reveal">직접 보여드립니다,<br />DIF의 현장</h2>
+    <p class="section-sub reveal">실제 컨설팅·프로젝트·전시 현장을 확인하세요.</p>
+
+    <!-- 탭 -->
+    <div class="gallery-tabs reveal">
+      <button class="gtab active" data-panel="p1">강의 · 프로젝트</button>
+      <button class="gtab" data-panel="p2">컨설팅 · 포트폴리오</button>
+      <button class="gtab" data-panel="p3">브랜딩 · 전시</button>
+    </div>
+
+    <!-- 패널 1: 강의-프로젝트 폴더 -->
+    <div class="gallery-panel active reveal" id="p1">
+      <div class="gallery-grid">
+        <img src="./recode-img/강의-프로젝트/design-lecture-03.jpg" alt="디자인 강의 현장" />
+        <img src="./recode-img/강의-프로젝트/design-lecture-04.jpg" alt="디자인 강의" />
+        <img src="./recode-img/강의-프로젝트/lecture-03.jpg" alt="강의 현장" />
+        <img src="./recode-img/강의-프로젝트/lecture-06.jpg" alt="강의 현장" />
+        <img src="./recode-img/강의-프로젝트/service-design-project-02.jpg" alt="서비스 디자인 프로젝트" />
+        <img src="./recode-img/강의-프로젝트/service-design-project-03.jpg" alt="서비스 디자인 현장" />
+        <img src="./recode-img/강의-프로젝트/service-design-village-01.jpg" alt="서비스 디자인 마을" />
+        <img src="./recode-img/강의-프로젝트/service-design-village-03.jpg" alt="서비스 디자인 마을" />
+        <img src="./recode-img/강의-프로젝트/service-design-village-09.jpg" alt="서비스 디자인 마을" />
+        <img src="./recode-img/강의-프로젝트/service-design-village-14.jpg" alt="서비스 디자인 마을" />
+      </div>
+    </div>
+
+    <!-- 패널 2: 컨설팅-포트폴리오 폴더 -->
+    <div class="gallery-panel" id="p2">
+      <div class="gallery-grid">
+        <img src="./recode-img/컨설팅-포트폴리오/egg-mockup-01.jpg" alt="에그 목업" />
+        <img src="./recode-img/컨설팅-포트폴리오/egg-mockup-02.jpg" alt="에그 목업" />
+        <img src="./recode-img/컨설팅-포트폴리오/kick-ver2-sketch-03.jpg" alt="스케치 작업" />
+        <img src="./recode-img/컨설팅-포트폴리오/lecture-consulting-mockup-01.jpg" alt="컨설팅 목업" />
+        <img src="./recode-img/컨설팅-포트폴리오/lecture-consulting-mockup-04.jpg" alt="컨설팅 목업" />
+        <img src="./recode-img/컨설팅-포트폴리오/lecture-consulting-sketch-01.jpg" alt="컨설팅 스케치" />
+        <img src="./recode-img/컨설팅-포트폴리오/lecture-consulting-sketch-02.jpg" alt="컨설팅 스케치" />
+        <img src="./recode-img/컨설팅-포트폴리오/lecture-consulting-sketch-04.jpg" alt="컨설팅 스케치" />
+      </div>
+    </div>
+
+    <!-- 패널 3: 브랜딩-전시 폴더 -->
+    <div class="gallery-panel" id="p3">
+      <div class="gallery-grid">
+        <img src="./recode-img/브랜딩-전시/brand-consulting-01.jpg" alt="브랜드 컨설팅" />
+        <img src="./recode-img/브랜딩-전시/brand-consulting-02.jpg" alt="브랜드 컨설팅 현장" />
+        <img src="./recode-img/브랜딩-전시/eco-project-research.jpg" alt="에코 프로젝트 리서치" />
+        <img src="./recode-img/브랜딩-전시/exhibition-01.jpg" alt="DIF 전시회" />
+        <img src="./recode-img/브랜딩-전시/exhibition-02.jpg" alt="DIF 전시회" />
+        <img src="./recode-img/브랜딩-전시/food-brand-logo.jpg" alt="푸드 브랜드 로고 작업" />
+        <img src="./recode-img/브랜딩-전시/keycap-01.jpg" alt="키캡 제품 디자인" />
+        <img src="./recode-img/브랜딩-전시/keycap-05.jpg" alt="키캡 목업" />
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ④ 3대 트랙 -->
+  <section class="section tracks">
+    <div class="tag">Core Tracks</div>
+    <h2 class="section-title reveal">현재 단계에 맞는<br />3가지 트랙</h2>
+    <p class="section-sub reveal">학부생·취업 준비자·예비 창업자에게 필요한 결과물이 다르기 때문에, 시작점부터 트랙을 다르게 설계합니다.</p>
+
+    <div class="track-card t1 reveal">
+      <p class="track-num">TRACK A · 학부생 과정</p>
+      <h3 class="track-name">진로 탐색과 실무형 프로젝트</h3>
+      <p class="track-desc">3~4학년 학부생이 학교 과제 수준을 넘어 실제 실무 프로젝트처럼 프로세스를 수행하고, 본인의 진로에 맞는 성취형 결과물을 만드는 과정입니다.</p>
+      <div class="track-items">
+        <span class="track-item">진로 탐색 및 디자인 방향 진단</span>
+        <span class="track-item">국내외 공모전과 실무형 프로젝트 수행</span>
+        <span class="track-item">AI 활용 디자인 프로세스 설계</span>
+      </div>
+    </div>
+
+    <div class="track-card t2 reveal">
+      <p class="track-num">TRACK B · 취업 준비 과정</p>
+      <h3 class="track-name">포트폴리오와 취업 패키지</h3>
+      <p class="track-desc">졸업예정자, 취업준비생, 이직자가 직무 방향을 탐색하고 지원 가능한 수준의 포트폴리오·이력서·자기소개서·면접 스토리를 완성하는 과정입니다.</p>
+      <div class="track-items">
+        <span class="track-item">직무 방향 진단과 기존 작업물 분석</span>
+        <span class="track-item">대표 프로젝트 리빌드와 포트폴리오 편집</span>
+        <span class="track-item">이력서·자기소개서·모의면접·지원 플랜</span>
+      </div>
+    </div>
+
+    <div class="track-card t3 reveal">
+      <p class="track-num">TRACK C · 창업·프리랜서 과정</p>
+      <h3 class="track-name">아이템 개발과 실행 로드맵</h3>
+      <p class="track-desc">예비창업자와 프리랜서 희망자가 경력·아이템 가능성을 분석하고, 사업기획서·지원사업·자금 확보까지 연결되는 실행 계획을 만드는 과정입니다.</p>
+      <div class="track-items">
+        <span class="track-item">커리어·창업 진단과 개인 포지셔닝</span>
+        <span class="track-item">아이템 정의·경쟁 분석·콘셉트 전략</span>
+        <span class="track-item">제안서·사업기획서·수익화 액션 플랜</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑤ PROGRAMS -->
+  <section class="section">
+    <div class="tag">Programs</div>
+    <h2 class="section-title reveal">6가지 핵심<br />세부 프로그램</h2>
+    <p class="section-sub reveal">트랙에 따라 선택·조합되는 실전 중심 프로그램입니다.</p>
+
+    <div class="programs-grid">
+      <div class="prog-card reveal">
+        <span class="prog-icon">🗂️</span>
+        <p class="prog-title">합격하는 포트폴리오 제작</p>
+        <p class="prog-desc">기업이 원하는 구성·스토리텔링으로 100% 완성도 있는 포트폴리오 구축</p>
+      </div>
+      <div class="prog-card reveal">
+        <span class="prog-icon">🤖</span>
+        <p class="prog-title">디자인 업무 × AI 활용</p>
+        <p class="prog-desc">실무에서 바로 쓰는 AI 툴 활용법으로 생산성을 2배 높이는 방법</p>
+      </div>
+      <div class="prog-card reveal">
+        <span class="prog-icon">🏆</span>
+        <p class="prog-title">공모전 수상 전략</p>
+        <p class="prog-desc">심사위원이 선택하는 기준을 역으로 분석해 수상 확률을 높이는 준비법</p>
+      </div>
+      <div class="prog-card reveal">
+        <span class="prog-icon">🖨️</span>
+        <p class="prog-title">3D 프린팅 &amp; 목업 제작</p>
+        <p class="prog-desc">아이디어를 실물로 구현하는 프로토타이핑 전 과정 실습</p>
+      </div>
+      <div class="prog-card reveal">
+        <span class="prog-icon">✏️</span>
+        <p class="prog-title">아이디어 발상 &amp; 드로잉</p>
+        <p class="prog-desc">막히는 순간을 돌파하는 발상 기법과 빠른 시각화 스케치 훈련</p>
+      </div>
+      <div class="prog-card reveal">
+        <span class="prog-icon">🔄</span>
+        <p class="prog-title">서비스 디자인 프로세스</p>
+        <p class="prog-desc">사용자 리서치부터 프로토타입까지 서비스 디자인 전 과정 실습</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑥ CURRICULUM -->
+  <section class="section curriculum">
+    <div class="tag">16 Week Curriculum</div>
+    <h2 class="section-title reveal">트랙마다 다르게<br />완성되는 16주</h2>
+    <p class="section-sub reveal">DIF의 과정은 목표별로 나뉩니다. 학부생은 프로젝트와 공모전, 취업 준비자는 포트폴리오와 지원 패키지, 예비 창업자는 아이템과 실행 계획까지 완성합니다.</p>
+
+    <div class="coaching-points reveal">
+      <div class="coaching-point">
+        <strong>1:1</strong>
+        <span>대면 코칭으로 작업의 방향과 완성도를 직접 피드백합니다.</span>
+      </div>
+      <div class="coaching-point">
+        <strong>현장</strong>
+        <span>다양한 학생들과 오프라인에서 연결되는 네트워킹을 만듭니다.</span>
+      </div>
+    </div>
+
+    <details class="track-detail a reveal" open>
+      <summary>
+        <div>
+          <span class="detail-label">TRACK A · 학부생 과정</span>
+          <h3 class="detail-title">진로 탐색과 실무형 프로젝트</h3>
+          <p class="detail-desc">3~4학년 학부생이 학교 과제 수준을 넘어 실제 실무 프로젝트처럼 프로세스를 수행하고, 진로에 맞는 성취형 결과물을 만드는 과정입니다.</p>
+        </div>
+      </summary>
+      <div class="week-list">
+        <div class="week-row"><span>1주차</span><span>오리엔테이션 &amp; 디자인 진단</span></div>
+        <div class="week-row"><span>2주차</span><span>프로젝트 주제 설정</span></div>
+        <div class="week-row"><span>3주차</span><span>시장·사용자 리서치</span></div>
+        <div class="week-row"><span>4주차</span><span>문제 정의</span></div>
+        <div class="week-row"><span>5주차</span><span>콘셉트 방향 설정</span></div>
+        <div class="week-row"><span>6주차</span><span>아이디어 발상</span></div>
+        <div class="week-row"><span>7주차</span><span>디자인 방향 1차 피드백</span></div>
+        <div class="week-row"><span>8주차</span><span>중간 발표</span></div>
+        <div class="week-row"><span>9주차</span><span>형태·구조 구체화</span></div>
+        <div class="week-row"><span>10주차</span><span>AI 에이전트 활용</span></div>
+        <div class="week-row"><span>11주차</span><span>목업·프로토타입 기획</span></div>
+        <div class="week-row"><span>12주차</span><span>최종 디자인 정리</span></div>
+        <div class="week-row"><span>13주차</span><span>포트폴리오 구성</span></div>
+        <div class="week-row"><span>14주차</span><span>발표 보드 제작</span></div>
+        <div class="week-row"><span>15주차</span><span>최종 피드백</span></div>
+        <div class="week-row"><span>16주차</span><span>최종 발표 &amp; 리뷰</span></div>
+      </div>
+      <div class="output-wrap">
+        <p class="output-title">최종 산출물</p>
+        <div class="output-chips">
+          <span class="output-chip">국내공모전 1식</span>
+          <span class="output-chip">국제공모전 1식</span>
+          <span class="output-chip">풀 프로세스 프로젝트</span>
+          <span class="output-chip">AI 에이전트</span>
+          <span class="output-chip">3D 목업 제작</span>
+          <span class="output-chip">포트폴리오</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="track-detail b reveal">
+      <summary>
+        <div>
+          <span class="detail-label">TRACK B · 취업 준비 과정</span>
+          <h3 class="detail-title">포트폴리오와 취업 패키지</h3>
+          <p class="detail-desc">졸업예정자, 취업준비생, 이직자가 직무 방향을 탐색하고 지원 가능한 수준의 포트폴리오·이력서·자기소개서·면접 스토리를 완성하는 과정입니다.</p>
+        </div>
+      </summary>
+      <div class="week-list">
+        <div class="week-row"><span>1주차</span><span>취업 방향 진단</span></div>
+        <div class="week-row"><span>2주차</span><span>직무 이해</span></div>
+        <div class="week-row"><span>3주차</span><span>기존 작업물 분석</span></div>
+        <div class="week-row"><span>4주차</span><span>포트폴리오 전략 수립</span></div>
+        <div class="week-row"><span>5주차</span><span>대표 프로젝트 리빌드 1</span></div>
+        <div class="week-row"><span>6주차</span><span>대표 프로젝트 리빌드 2</span></div>
+        <div class="week-row"><span>7주차</span><span>보조 프로젝트 정리</span></div>
+        <div class="week-row"><span>8주차</span><span>중간 포트폴리오 리뷰</span></div>
+        <div class="week-row"><span>9주차</span><span>포트폴리오 디자인 편집</span></div>
+        <div class="week-row"><span>10주차</span><span>자기소개서 방향 설정</span></div>
+        <div class="week-row"><span>11주차</span><span>이력서·프로필 작성</span></div>
+        <div class="week-row"><span>12주차</span><span>기업 분석 &amp; 지원 전략</span></div>
+        <div class="week-row"><span>13주차</span><span>면접 스토리 구성</span></div>
+        <div class="week-row"><span>14주차</span><span>모의면접</span></div>
+        <div class="week-row"><span>15주차</span><span>최종 포트폴리오 완성</span></div>
+        <div class="week-row"><span>16주차</span><span>최종 리뷰 &amp; 지원 플랜</span></div>
+      </div>
+      <div class="output-wrap">
+        <p class="output-title">최종 산출물</p>
+        <div class="output-chips">
+          <span class="output-chip">나만의 포트폴리오</span>
+          <span class="output-chip">이력서</span>
+          <span class="output-chip">자기소개서</span>
+          <span class="output-chip">면접 준비</span>
+          <span class="output-chip">지원 플랜</span>
+          <span class="output-chip">역량별 실무프로젝트 참여</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="track-detail c reveal">
+      <summary>
+        <div>
+          <span class="detail-label">TRACK C · 창업·프리랜서 과정</span>
+          <h3 class="detail-title">아이템 개발과 실행 로드맵</h3>
+          <p class="detail-desc">예비창업자와 프리랜서 희망자가 경력·아이템 가능성을 분석하고, 사업기획서·지원사업·자금 확보까지 연결되는 실행 계획을 만드는 과정입니다.</p>
+        </div>
+      </summary>
+      <div class="week-list">
+        <div class="week-row"><span>1주차</span><span>커리어·창업 진단</span></div>
+        <div class="week-row"><span>2주차</span><span>방향 설정</span></div>
+        <div class="week-row"><span>3주차</span><span>시장·직무·사업 분석</span></div>
+        <div class="week-row"><span>4주차</span><span>개인 포지셔닝</span></div>
+        <div class="week-row"><span>5주차</span><span>이직형: 경력 프로젝트 정리 / 창업형: 아이템 정의</span></div>
+        <div class="week-row"><span>6주차</span><span>경쟁 분석</span></div>
+        <div class="week-row"><span>7주차</span><span>콘셉트 전략</span></div>
+        <div class="week-row"><span>8주차</span><span>중간 발표</span></div>
+        <div class="week-row"><span>9주차</span><span>결과물 구조 설계</span></div>
+        <div class="week-row"><span>10주차</span><span>핵심 콘텐츠 제작</span></div>
+        <div class="week-row"><span>11주차</span><span>비주얼 전략</span></div>
+        <div class="week-row"><span>12주차</span><span>제안서·포트폴리오 제작</span></div>
+        <div class="week-row"><span>13주차</span><span>수익화·실행 계획</span></div>
+        <div class="week-row"><span>14주차</span><span>피칭·면접 훈련</span></div>
+        <div class="week-row"><span>15주차</span><span>최종 보완</span></div>
+        <div class="week-row"><span>16주차</span><span>최종 발표 &amp; 액션 플랜</span></div>
+      </div>
+      <div class="output-wrap">
+        <p class="output-title">최종 산출물</p>
+        <div class="output-chips">
+          <span class="output-chip">아이템 개발전략</span>
+          <span class="output-chip">경력 포트폴리오</span>
+          <span class="output-chip">사업기획서</span>
+          <span class="output-chip">제안서</span>
+          <span class="output-chip">수익화 계획</span>
+          <span class="output-chip">최종 액션 플랜</span>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑥ ACTIVITIES -->
+  <section class="section activities">
+    <div class="tag">Activities</div>
+    <h2 class="section-title reveal">배움을 넘어<br />실전으로 나갑니다</h2>
+    <p class="section-sub reveal">DIF의 활동은 강의실 안에 머물지 않습니다.</p>
+
+    <div class="activity-list">
+      <div class="activity-item reveal">
+        <div class="activity-icon-wrap">🎨</div>
+        <div class="activity-text">
+          <h4>기수별 전시회 개최(예정)</h4>
+          <p>결과물을 실제 전시 형태로 선보입니다. 제작한 작업이 관객을 만나는 순간, 포트폴리오의 무게가 달라집니다.</p>
+        </div>
+      </div>
+      <div class="activity-item reveal">
+        <div class="activity-icon-wrap">🏙️</div>
+        <div class="activity-text">
+          <h4>로컬 연계 실무 프로젝트</h4>
+          <p>지역 기업·브랜드와 실제 협업 프로젝트를 진행합니다. 가상 과제가 아닌, 결과물이 실제로 쓰이는 경험을 합니다.</p>
+        </div>
+      </div>
+      <div class="activity-item reveal">
+        <div class="activity-icon-wrap">🤝</div>
+        <div class="activity-text">
+          <h4>실무 네트워킹 &amp; 창업 지원</h4>
+          <p>현직 디자이너·창업가와의 네트워킹으로 기회를 만듭니다. 수료 후에도 이어지는 DIF 커뮤니티가 함께합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑦ FOR WHOM -->
+  <section class="section">
+    <div class="tag">For Whom</div>
+    <h2 class="section-title reveal">DIF가 필요한<br />바로 당신</h2>
+    <div class="whom-list">
+      <div class="whom-card reveal">
+        <div class="whom-badge b1">학생</div>
+        <div class="whom-text">
+          <h4>디자인 전공 재학생</h4>
+          <p>학교 과제 너머의 실전 감각이 필요한 분. 졸업 전에 실무·취업·창업의 그림을 그려두고 싶은 분.</p>
+        </div>
+      </div>
+      <div class="whom-card reveal">
+        <div class="whom-badge b2">취준생</div>
+        <div class="whom-text">
+          <h4>취업을 준비하는 디자이너</h4>
+          <p>포트폴리오 방향을 잡지 못해 멈춰있는 분. 혼자 하는 취업 준비가 막막한 분.</p>
+        </div>
+      </div>
+      <div class="whom-card reveal">
+        <div class="whom-badge b3">예비<br />창업자</div>
+        <div class="whom-text">
+          <h4>창업을 꿈꾸는 크리에이터</h4>
+          <p>좋은 아이디어는 있는데 어떻게 실행해야 할지 모르는 분. 브랜딩·자금·지원사업까지 한번에 파악하고 싶은 분.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑧ FIRST COHORT OFFER -->
+  <section class="section offer">
+    <div class="tag">1기 운영안</div>
+    <h2 class="section-title reveal">첫 기수 전용<br />특가와 추천 흐름</h2>
+    <p class="section-sub reveal">1기에는 트랙별 전용 할인안이 적용됩니다.</p>
+
+    <div class="season-grid reveal">
+      <div class="season-card">
+        <p class="label">1차 · 썸머</p>
+        <p class="value">6월 / 7월 / 8월 / 9월<br />16주 과정</p>
+      </div>
+      <div class="season-card">
+        <p class="label">2차 · 윈터</p>
+        <p class="value">12월 / 1월 / 2월 / 3월<br />16주 과정</p>
+      </div>
+    </div>
+
+    <div class="price-list">
+      <div class="price-card reveal">
+        <div class="price-head">
+          <p class="price-track">트랙 A</p>
+          <p class="price-target">학부생 과정<br />3~4학년</p>
+        </div>
+        <div class="price-values">
+          <div class="price-value"><span>원가</span><strong>500,000/월</strong></div>
+          <div class="price-value highlight"><span>50% 특가</span><strong>250,000/월</strong></div>
+          <div class="price-value"><span>30% 특가</span><strong>350,000/월</strong></div>
+        </div>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="price-head">
+          <p class="price-track">트랙 B</p>
+          <p class="price-target">졸업예정자<br />취준생·이직자</p>
+        </div>
+        <div class="price-values">
+          <div class="price-value"><span>원가</span><strong>550,000/월</strong></div>
+          <div class="price-value highlight"><span>50% 특가</span><strong>275,000/월</strong></div>
+          <div class="price-value"><span>30% 특가</span><strong>385,000/월</strong></div>
+        </div>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="price-head">
+          <p class="price-track">트랙 C</p>
+          <p class="price-target">예비창업자<br />프리랜서 희망자</p>
+        </div>
+        <div class="price-values">
+          <div class="price-value"><span>원가</span><strong>600,000/월</strong></div>
+          <div class="price-value highlight"><span>50% 특가</span><strong>300,000/월</strong></div>
+          <div class="price-value"><span>30% 특가</span><strong>420,000/월</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="path-heading reveal">
+      <h3>상황별 추천 트랙</h3>
+      <p>학년과 준비 단계에 따라 1차시·2차시를 어떻게 연결하면 좋은지 확인하세요.</p>
+    </div>
+
+    <div class="path-list">
+      <div class="path-item reveal">
+        <strong>진로 탐색과 졸전 전 역량 강화</strong>
+        <div class="path-meta">
+          <p><b>대상</b><span>3학년 1학기 학부생</span></p>
+          <p><b>과정</b><span>1차시 트랙 A / 2차시 트랙 A</span></p>
+        </div>
+      </div>
+      <div class="path-item reveal">
+        <strong>취업 준비를 위한 이상적인 연계과정</strong>
+        <div class="path-meta">
+          <p><b>대상</b><span>4학년 1학기 학부생</span></p>
+          <p><b>과정</b><span>1차시 트랙 A / 2차시 트랙 B</span></p>
+        </div>
+      </div>
+      <div class="path-item reveal">
+        <strong>졸전 후 단기간으로 취업준비</strong>
+        <div class="path-meta">
+          <p><b>대상</b><span>4학년 졸업예정자</span></p>
+          <p><b>과정</b><span>2차시 트랙 B</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑧ RECRUITMENT -->
+  <section class="section recruit">
+    <div class="tag">Recruitment</div>
+    <h2 class="section-title reveal">모집 및 운영 안내</h2>
+    <p class="section-sub reveal">1기 운영안 기준으로 상담 후 현재 신청 가능한 차수와 적용 특가를 안내합니다.</p>
+
+    <div class="recruit-grid">
+      <div class="recruit-box reveal">
+        <p class="label">모집 시기</p>
+        <p class="value"><em>6–9월</em><br />12–3월</p>
+      </div>
+      <div class="recruit-box reveal">
+        <p class="label">운영 기간</p>
+        <p class="value">트랙별<br /><em>16주</em></p>
+      </div>
+      <div class="recruit-box reveal">
+        <p class="label">참가 비용</p>
+        <p class="value"><em>1기</em><br />특가</p>
+      </div>
+    </div>
+
+    <div class="recruit-note reveal">
+      <p><strong>상담을 통해 현재 단계에 맞는 트랙을 제안합니다.</strong></p>
+      <p>과정 중 목표와 준비 상황에 맞는 차수를 안내하고, 1기 특가 적용 조건도 함께 확인합니다.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑨ CTA -->
+  <section class="section cta" id="cta">
+    <p class="cta-eyebrow reveal">Ready to Start?</p>
+    <h2 class="cta-title reveal">지금이 바로<br /><em>방향을 잡을</em> 때입니다.</h2>
+    <p class="cta-desc reveal">
+      망설이는 시간이 길어질수록 자리는 줄어듭니다.<br />
+      무료 상담을 통해 나에게 맞는 트랙과 일정을 확인해보세요.
+    </p>
+    <a href="https://forms.gle/8dMCoteDvqS4eMru6" class="btn-cta reveal">
+      지금 무료 상담 신청하기
+    </a>
+    <p class="cta-sub reveal">부담 없이 문의하세요 — 먼저 당신의 이야기를 듣겠습니다.</p>
+  </section>
+
+  <footer>
+    <strong>DIF — Design Inner Force</strong><br />
+    디자인 컨설팅 프로젝트 그룹<br />
+    © 2026 DIF. All rights reserved.
+  </footer>
+
+</div>
+
+<script>
+  /* 스크롤 페이드인 */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* 마소너리: 각 이미지 높이에 맞게 grid-row span 계산 */
+  function spanImg(img) {
+    const gap = 8;
+    const span = Math.ceil((img.getBoundingClientRect().height + gap) / (1 + gap));
+    img.style.gridRowEnd = 'span ' + span;
+  }
+  function applyMasonry() {
+    document.querySelectorAll('.gallery-grid img').forEach(img => {
+      if (img.complete && img.naturalHeight) {
+        spanImg(img);
+      } else {
+        img.addEventListener('load', () => spanImg(img), { once: true });
+      }
+    });
+  }
+  applyMasonry();
+  window.addEventListener('resize', applyMasonry);
+
+  /* 갤러리 탭 */
+  document.querySelectorAll('.gtab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.panel).classList.add('active');
+      applyMasonry();
+    });
+  });
+
+  /* 커리큘럼 아코디언 */
+  document.querySelectorAll('.track-detail').forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if (!detail.open) return;
+      document.querySelectorAll('.track-detail').forEach(other => {
+        if (other !== detail) other.removeAttribute('open');
+      });
+    });
+  });
+</script>
+</body>
+</html>
