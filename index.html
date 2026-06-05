@@ -368,6 +368,7 @@
       height: auto;
       display: block;
       border-radius: 10px;
+      background: rgba(255,255,255,0.05);
     }
 
     /* ════════════════════════════════
@@ -1569,8 +1570,17 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   /* 마소너리: 각 이미지 높이에 맞게 grid-row span 계산 */
+  function setImgAspect(img) {
+    const width = Number(img.getAttribute('width'));
+    const height = Number(img.getAttribute('height'));
+    if (width && height) img.style.aspectRatio = `${width} / ${height}`;
+  }
+
   function loadPanelImages(panel) {
+    if (!panel) return;
+
     panel.querySelectorAll('img[data-src]').forEach(img => {
+      setImgAspect(img);
       if (img.dataset.srcset) img.srcset = img.dataset.srcset;
       img.src = img.dataset.src;
       img.removeAttribute('data-src');
@@ -1578,28 +1588,89 @@
     });
   }
 
+  const galleryPreloaders = [];
+
+  function preloadPanelImages(panel) {
+    if (!panel) return;
+
+    panel.querySelectorAll('img[data-src]').forEach(img => {
+      if (img.dataset.preloaded) return;
+
+      const preloader = new Image();
+      preloader.decoding = 'async';
+      preloader.sizes = img.sizes || '';
+      if (img.dataset.srcset) preloader.srcset = img.dataset.srcset;
+      preloader.src = img.dataset.src;
+      galleryPreloaders.push(preloader);
+      img.dataset.preloaded = 'true';
+    });
+  }
+
+  function preloadDeferredGalleryImages() {
+    document.querySelectorAll('.gallery-panel:not(.active)').forEach(preloadPanelImages);
+  }
+
+  function expectedImgHeight(img) {
+    const rect = img.getBoundingClientRect();
+    if (rect.height) return rect.height;
+
+    const renderedWidth = rect.width || img.parentElement?.getBoundingClientRect().width || 0;
+    const attrWidth = Number(img.getAttribute('width'));
+    const attrHeight = Number(img.getAttribute('height'));
+
+    if (renderedWidth && attrWidth && attrHeight) {
+      return renderedWidth * (attrHeight / attrWidth);
+    }
+
+    return 0;
+  }
+
   function spanImg(img) {
     const gap = 8;
-    const span = Math.ceil((img.getBoundingClientRect().height + gap) / (1 + gap));
+    const height = expectedImgHeight(img);
+    if (!height) return;
+
+    const span = Math.ceil((height + gap) / (1 + gap));
     img.style.gridRowEnd = 'span ' + span;
   }
   function applyMasonry(scope = document) {
     scope.querySelectorAll('.gallery-grid img').forEach(img => {
-      if (!img.currentSrc && !img.src) return;
+      setImgAspect(img);
+      if (!img.currentSrc && !img.src && !img.dataset.src) return;
 
-      if (img.complete && img.naturalHeight) {
-        spanImg(img);
-      } else {
-        img.addEventListener('load', () => spanImg(img), { once: true });
+      spanImg(img);
+
+      if (!img.dataset.masonryBound) {
+        img.addEventListener('load', () => spanImg(img));
+        img.addEventListener('error', () => spanImg(img));
+        img.dataset.masonryBound = 'true';
       }
     });
   }
+  document.querySelectorAll('.gallery-grid img').forEach(setImgAspect);
   const activeGalleryPanel = document.querySelector('.gallery-panel.active');
   if (activeGalleryPanel) {
     loadPanelImages(activeGalleryPanel);
     applyMasonry(activeGalleryPanel);
   }
   window.addEventListener('resize', () => applyMasonry(document.querySelector('.gallery-panel.active') || document));
+
+  const gallerySection = document.querySelector('.gallery');
+  if (gallerySection) {
+    const preloadGalleryObserver = new IntersectionObserver((entries) => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(preloadDeferredGalleryImages, { timeout: 1200 });
+      } else {
+        setTimeout(preloadDeferredGalleryImages, 300);
+      }
+
+      preloadGalleryObserver.disconnect();
+    }, { rootMargin: '700px 0px', threshold: 0 });
+
+    preloadGalleryObserver.observe(gallerySection);
+  }
 
   /* 갤러리 탭 */
   document.querySelectorAll('.gtab').forEach(btn => {
@@ -1608,8 +1679,9 @@
       document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
       const panel = document.getElementById(btn.dataset.panel);
-      loadPanelImages(panel);
       panel.classList.add('active');
+      applyMasonry(panel);
+      loadPanelImages(panel);
       requestAnimationFrame(() => applyMasonry(panel));
     });
   });
