@@ -11,15 +11,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0B1220;
-      --bg2: #111827;
-      --bg3: #1a2438;
-      --accent: #C8F04A;
-      --accent2: #F0C94A;
-      --text: #F0F4FF;
-      --muted: #8A96B0;
-      --card: #161F30;
-      --border: rgba(255,255,255,0.07);
+      color-scheme: light;
+      --bg: #FFFFFF;
+      --bg2: #F6F9FF;
+      --bg3: #EEF4FF;
+      --accent: #2563EB;
+      --accent2: #0EA5E9;
+      --text: #172033;
+      --muted: #64748B;
+      --card: #FFFFFF;
+      --border: #DCE5F4;
       --radius: 16px;
       --max: 430px;
     }
@@ -28,7 +29,7 @@
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      background: var(--bg);
+      background: #EEF3FA;
       color: var(--text);
       min-height: 100vh;
       display: flex;
@@ -39,7 +40,9 @@
     .page {
       width: 100%;
       max-width: var(--max);
+      background: var(--bg);
       overflow-x: hidden;
+      box-shadow: 0 0 48px rgba(15, 23, 42, 0.08);
     }
 
     /* ── Fade-in animation ── */
@@ -59,8 +62,8 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      background: rgba(200,240,74,0.1);
-      border: 1px solid rgba(200,240,74,0.25);
+      background: rgba(37,99,235,0.08);
+      border: 1px solid rgba(37,99,235,0.18);
       border-radius: 100px;
       padding: 4px 12px;
       margin-bottom: 16px;
@@ -90,21 +93,41 @@
       position: relative;
       padding: 80px 24px 72px;
       overflow: hidden;
+      background: #0F1E3A;
+      color: #FFFFFF;
+    }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: block;
+    }
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: 34% center;
     }
     .hero-bg {
       position: absolute;
       inset: 0;
+      z-index: 1;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(200,240,74,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 90% 110%, rgba(240,201,74,0.08) 0%, transparent 60%);
+        linear-gradient(90deg, rgba(9,23,49,0.9) 0%, rgba(9,23,49,0.76) 66%, rgba(9,23,49,0.58) 100%),
+        linear-gradient(180deg, rgba(9,23,49,0.12) 0%, rgba(9,23,49,0.42) 100%);
       pointer-events: none;
+    }
+    .hero > :not(.hero-media):not(.hero-bg) {
+      position: relative;
+      z-index: 2;
     }
     .hero-logo {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: #93C5FD;
       margin-bottom: 48px;
       display: flex;
       align-items: center;
@@ -114,13 +137,13 @@
       content: '';
       width: 24px;
       height: 2px;
-      background: var(--accent);
+      background: #93C5FD;
       display: inline-block;
     }
     .hero-kicker {
       font-size: 13px;
       font-weight: 500;
-      color: var(--muted);
+      color: rgba(255,255,255,0.76);
       margin-bottom: 16px;
       letter-spacing: 0.04em;
     }
@@ -133,11 +156,11 @@
     }
     .hero-title em {
       font-style: normal;
-      color: var(--accent);
+      color: #60A5FA;
     }
     .hero-desc {
       font-size: 15px;
-      color: var(--muted);
+      color: rgba(255,255,255,0.76);
       line-height: 1.8;
       margin-bottom: 40px;
       word-break: keep-all;
@@ -147,7 +170,7 @@
       align-items: center;
       gap: 8px;
       background: var(--accent);
-      color: #0B1220;
+      color: #FFFFFF;
       font-weight: 700;
       font-size: 15px;
       padding: 16px 28px;
@@ -156,9 +179,9 @@
       cursor: pointer;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 32px rgba(200,240,74,0.25);
+      box-shadow: 0 8px 32px rgba(37,99,235,0.24);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,240,74,0.35); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,99,235,0.32); }
     .btn-primary svg { width: 16px; height: 16px; }
 
     /* ════════════════════════════════
@@ -194,8 +217,8 @@
     .pain-answer {
       margin-top: 32px;
       padding: 22px 18px;
-      background: linear-gradient(135deg, rgba(200,240,74,0.08), rgba(240,201,74,0.05));
-      border: 1px solid rgba(200,240,74,0.2);
+      background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(14,165,233,0.06));
+      border: 1px solid rgba(37,99,235,0.18);
       border-radius: var(--radius);
       text-align: center;
     }
@@ -211,6 +234,23 @@
     /* ════════════════════════════════
        3. ABOUT DIF
     ════════════════════════════════ */
+    .about-media {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      margin-bottom: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg3);
+    }
+    .about-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 52%;
+    }
     .about-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -274,14 +314,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #0B1220;
+      color: #FFFFFF;
       font-size: 18px;
       font-weight: 900;
       flex-shrink: 0;
     }
     .mentor-card:nth-child(1) .mentor-initial { background: var(--accent); }
     .mentor-card:nth-child(2) .mentor-initial { background: var(--accent2); }
-    .mentor-card:nth-child(3) .mentor-initial { background: #4A9AF0; }
+    .mentor-card:nth-child(3) .mentor-initial { background: #1D4ED8; }
     .mentor-name {
       font-size: 17px;
       font-weight: 900;
@@ -313,7 +353,7 @@
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: rgba(200,240,74,0.75);
+      background: rgba(37,99,235,0.78);
       flex-shrink: 0;
       margin-top: 8px;
     }
@@ -348,7 +388,7 @@
     }
     .gtab.active {
       background: var(--accent);
-      color: #0B1220;
+      color: #FFFFFF;
       border-color: var(--accent);
     }
 
@@ -368,7 +408,7 @@
       height: auto;
       display: block;
       border-radius: 10px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(37,99,235,0.06);
     }
 
     /* ════════════════════════════════
@@ -376,28 +416,51 @@
     ════════════════════════════════ */
     .tracks { background: var(--bg2); }
     .track-card {
-      background: var(--card);
+      background: #10213F;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 28px 22px;
       margin-bottom: 16px;
       position: relative;
       overflow: hidden;
+      color: #FFFFFF;
+      isolation: isolate;
+    }
+    .track-media {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      display: block;
+    }
+    .track-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .track-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(110deg, rgba(8,23,48,0.94) 0%, rgba(8,23,48,0.87) 58%, rgba(8,23,48,0.68) 100%);
+      pointer-events: none;
     }
     .track-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
+      z-index: 1;
     }
-    .track-card.t1::before { background: linear-gradient(90deg, #C8F04A, #82D926); }
-    .track-card.t2::before { background: linear-gradient(90deg, #F0C94A, #F0894A); }
-    .track-card.t3::before { background: linear-gradient(90deg, #4A9AF0, #C84AF0); }
+    .track-card.t1::before { background: linear-gradient(90deg, #2563EB, #60A5FA); }
+    .track-card.t2::before { background: linear-gradient(90deg, #0EA5E9, #38BDF8); }
+    .track-card.t3::before { background: linear-gradient(90deg, #1E40AF, #2563EB); }
     .track-num {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.1em;
-      color: var(--muted);
+      color: rgba(255,255,255,0.68);
       margin-bottom: 10px;
     }
     .track-name {
@@ -405,12 +468,12 @@
       font-weight: 900;
       margin-bottom: 10px;
     }
-    .track-card.t1 .track-name { color: #C8F04A; }
-    .track-card.t2 .track-name { color: #F0C94A; }
-    .track-card.t3 .track-name { color: #4A9AF0; }
+    .track-card.t1 .track-name { color: #93C5FD; }
+    .track-card.t2 .track-name { color: #7DD3FC; }
+    .track-card.t3 .track-name { color: #BFDBFE; }
     .track-desc {
       font-size: 14px;
-      color: var(--muted);
+      color: rgba(255,255,255,0.76);
       line-height: 1.75;
       margin-bottom: 18px;
       word-break: keep-all;
@@ -422,14 +485,14 @@
     }
     .track-item {
       font-size: 13px;
-      color: var(--text);
+      color: #FFFFFF;
       display: flex;
       align-items: flex-start;
       gap: 8px;
     }
     .track-item::before {
       content: '→';
-      color: var(--muted);
+      color: rgba(255,255,255,0.62);
       flex-shrink: 0;
       font-size: 12px;
       margin-top: 1px;
@@ -546,7 +609,7 @@
     }
     .track-detail.a .detail-title { color: var(--accent); }
     .track-detail.b .detail-title { color: var(--accent2); }
-    .track-detail.c .detail-title { color: #4A9AF0; }
+    .track-detail.c .detail-title { color: #1E40AF; }
     .detail-desc {
       font-size: 13px;
       color: var(--muted);
@@ -658,12 +721,12 @@
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.05em;
-      color: #0B1220;
+      color: #FFFFFF;
       flex-shrink: 0;
     }
     .whom-badge.b1 { background: var(--accent); }
     .whom-badge.b2 { background: var(--accent2); }
-    .whom-badge.b3 { background: #4A9AF0; }
+    .whom-badge.b3 { background: #1D4ED8; }
     .whom-text h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
     .whom-text p { font-size: 13px; color: var(--muted); line-height: 1.65; word-break: keep-all; }
 
@@ -785,8 +848,8 @@
       min-width: 0;
     }
     .price-value.highlight {
-      background: rgba(200,240,74,0.08);
-      border-color: rgba(200,240,74,0.32);
+      background: rgba(37,99,235,0.08);
+      border-color: rgba(37,99,235,0.28);
     }
     .price-value span {
       display: block;
@@ -883,7 +946,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 90% 70% at 50% 100%, rgba(200,240,74,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse 90% 70% at 50% 100%, rgba(37,99,235,0.09) 0%, transparent 70%);
       pointer-events: none;
     }
     .cta-eyebrow {
@@ -914,7 +977,7 @@
       align-items: center;
       gap: 8px;
       background: var(--accent);
-      color: #0B1220;
+      color: #FFFFFF;
       font-weight: 900;
       font-size: 16px;
       padding: 18px 32px;
@@ -922,13 +985,13 @@
       border: none;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 8px 40px rgba(200,240,74,0.3);
+      box-shadow: 0 8px 40px rgba(37,99,235,0.26);
       transition: transform 0.2s, box-shadow 0.2s;
       width: 100%;
       max-width: 320px;
       justify-content: center;
     }
-    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 48px rgba(200,240,74,0.4); }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 48px rgba(37,99,235,0.34); }
     .cta-sub { margin-top: 16px; font-size: 12px; color: var(--muted); }
 
     footer {
@@ -947,6 +1010,19 @@
 
   <!-- ① HERO -->
   <section class="hero">
+    <picture class="hero-media" aria-hidden="true">
+      <img
+        src="./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg"
+        srcset="./recode-img-optimized/강의-프로젝트/design-lecture-04-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg 720w"
+        sizes="(max-width: 430px) 100vw, 430px"
+        alt=""
+        width="720"
+        height="529"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
     <div class="hero-bg"></div>
     <div class="hero-logo">DIF</div>
     <p class="hero-kicker">Design Inner Force</p>
@@ -959,7 +1035,7 @@
     </p>
     <a href="#cta" class="btn-primary">
       지금 무료 상담 신청
-      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h10M9 4l4 4-4 4" stroke="#0B1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </section>
 
@@ -999,6 +1075,18 @@
     <div class="tag">About DIF</div>
     <h2 class="section-title reveal">디자인의 내면에서<br /> 나오는 진짜 힘</h2>
     <p class="section-sub reveal">DIF(Design Inner Force)는 실무 경험을 갖춘 멘토와 함께 디자이너로서의 방향을 잡아가는 융합형 컨설팅 프로젝트 그룹입니다. 강의를 듣는 게 아니라, 직접 만들고 피드백받으며 성장합니다.</p>
+    <picture class="about-media reveal">
+      <img
+        src="./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg"
+        srcset="./recode-img-optimized/강의-프로젝트/service-design-project-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg 720w"
+        sizes="(max-width: 430px) calc(100vw - 48px), 382px"
+        alt="참여자들이 함께 진행하는 서비스 디자인 프로젝트 현장"
+        width="720"
+        height="960"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
     <div class="about-card reveal">
       <h3>우리가 다른 이유</h3>
       <p>단순한 포트폴리오 클래스가 아닙니다. 학부생 과정·취업 준비 과정·창업/프리랜서 과정 3가지 트랙을 통해 각자의 목표에 맞는 실전 결과물을 만들어냅니다. 보고 따라하는 온라인 수업이 아니라 대면 1대1 코칭과 오프라인 네트워킹을 중심으로 운영됩니다.</p>
@@ -1141,6 +1229,9 @@
     <p class="section-sub reveal">학부생·취업 준비자·예비 창업자에게 필요한 결과물이 다르기 때문에, 시작점부터 트랙을 다르게 설계합니다.</p>
 
     <div class="track-card t1 reveal">
+      <picture class="track-media" aria-hidden="true">
+        <img src="./recode-img-optimized/tracks/track_a-384.jpg" srcset="./recode-img-optimized/tracks/track_a-384.jpg 384w, ./recode-img-optimized/tracks/track_a-768.jpg 768w" sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="" width="768" height="576" loading="lazy" decoding="async" />
+      </picture>
       <p class="track-num">TRACK A · 학부생 과정</p>
       <h3 class="track-name">진로 탐색과 실무형 프로젝트</h3>
       <p class="track-desc">3~4학년 학부생이 학교 과제 수준을 넘어 실제 실무 프로젝트처럼 프로세스를 수행하고, 본인의 진로에 맞는 성취형 결과물을 만드는 과정입니다.</p>
@@ -1152,6 +1243,9 @@
     </div>
 
     <div class="track-card t2 reveal">
+      <picture class="track-media" aria-hidden="true">
+        <img src="./recode-img-optimized/tracks/track_b-384.jpg" srcset="./recode-img-optimized/tracks/track_b-384.jpg 384w, ./recode-img-optimized/tracks/track_b-768.jpg 768w" sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="" width="768" height="576" loading="lazy" decoding="async" />
+      </picture>
       <p class="track-num">TRACK B · 취업 준비 과정</p>
       <h3 class="track-name">포트폴리오와 취업 패키지</h3>
       <p class="track-desc">졸업예정자, 취업준비생, 이직자가 직무 방향을 탐색하고 지원 가능한 수준의 포트폴리오·이력서·자기소개서·면접 스토리를 완성하는 과정입니다.</p>
@@ -1163,6 +1257,9 @@
     </div>
 
     <div class="track-card t3 reveal">
+      <picture class="track-media" aria-hidden="true">
+        <img src="./recode-img-optimized/tracks/track_c-384.jpg" srcset="./recode-img-optimized/tracks/track_c-384.jpg 384w, ./recode-img-optimized/tracks/track_c-768.jpg 768w" sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="" width="768" height="576" loading="lazy" decoding="async" />
+      </picture>
       <p class="track-num">TRACK C · 창업·프리랜서 과정</p>
       <h3 class="track-name">아이템 개발과 실행 로드맵</h3>
       <p class="track-desc">예비창업자와 프리랜서 희망자가 경력·아이템 가능성을 분석하고, 사업기획서·지원사업·자금 확보까지 연결되는 실행 계획을 만드는 과정입니다.</p>
