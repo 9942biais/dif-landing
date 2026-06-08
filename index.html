@@ -568,30 +568,11 @@
     .track-detail:last-child { margin-bottom: 0; }
     .track-detail summary {
       list-style: none;
-      cursor: pointer;
       padding: 22px 18px;
       display: flex;
       align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
     }
     .track-detail summary::-webkit-details-marker { display: none; }
-    .track-detail summary::after {
-      content: '+';
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 18px;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-    .track-detail[open] summary::after { content: '-'; }
     .detail-label {
       display: block;
       font-size: 11px;
@@ -616,54 +597,6 @@
       line-height: 1.65;
       word-break: keep-all;
     }
-    .week-list {
-      display: grid;
-      gap: 6px;
-      padding: 0 18px 18px;
-    }
-    .week-row {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 10px;
-      align-items: start;
-      padding: 9px 0;
-      border-top: 1px solid var(--border);
-    }
-    .week-row span:first-child {
-      font-size: 11px;
-      font-weight: 900;
-      color: var(--accent);
-    }
-    .week-row span:last-child {
-      font-size: 13px;
-      color: var(--text);
-      line-height: 1.55;
-      word-break: keep-all;
-    }
-    .output-wrap {
-      padding: 0 18px 22px;
-    }
-    .output-title {
-      font-size: 12px;
-      font-weight: 900;
-      color: var(--accent2);
-      margin-bottom: 10px;
-    }
-    .output-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .output-chip {
-      font-size: 12px;
-      color: var(--text);
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 6px 10px;
-      word-break: keep-all;
-    }
-
     /* ════════════════════════════════
        6. ACTIVITIES
     ════════════════════════════════ */
@@ -1340,35 +1273,6 @@
           <p class="detail-desc">3~4학년 학부생이 학교 과제 수준을 넘어 실제 실무 프로젝트처럼 프로세스를 수행하고, 진로에 맞는 성취형 결과물을 만드는 과정입니다.</p>
         </div>
       </summary>
-      <div class="week-list">
-        <div class="week-row"><span>1주차</span><span>오리엔테이션 &amp; 디자인 진단</span></div>
-        <div class="week-row"><span>2주차</span><span>프로젝트 주제 설정</span></div>
-        <div class="week-row"><span>3주차</span><span>시장·사용자 리서치</span></div>
-        <div class="week-row"><span>4주차</span><span>문제 정의</span></div>
-        <div class="week-row"><span>5주차</span><span>콘셉트 방향 설정</span></div>
-        <div class="week-row"><span>6주차</span><span>아이디어 발상</span></div>
-        <div class="week-row"><span>7주차</span><span>디자인 방향 1차 피드백</span></div>
-        <div class="week-row"><span>8주차</span><span>중간 발표</span></div>
-        <div class="week-row"><span>9주차</span><span>형태·구조 구체화</span></div>
-        <div class="week-row"><span>10주차</span><span>AI 에이전트 활용</span></div>
-        <div class="week-row"><span>11주차</span><span>목업·프로토타입 기획</span></div>
-        <div class="week-row"><span>12주차</span><span>최종 디자인 정리</span></div>
-        <div class="week-row"><span>13주차</span><span>포트폴리오 구성</span></div>
-        <div class="week-row"><span>14주차</span><span>발표 보드 제작</span></div>
-        <div class="week-row"><span>15주차</span><span>최종 피드백</span></div>
-        <div class="week-row"><span>16주차</span><span>최종 발표 &amp; 리뷰</span></div>
-      </div>
-      <div class="output-wrap">
-        <p class="output-title">최종 산출물</p>
-        <div class="output-chips">
-          <span class="output-chip">국내공모전 1식</span>
-          <span class="output-chip">국제공모전 1식</span>
-          <span class="output-chip">포트폴리오</span>
-          <span class="output-chip">AI Agent</span>
-          <span class="output-chip">목업제작</span>
-          <span class="output-chip">풀 프로세스 프로젝트</span>
-        </div>
-      </div>
     </details>
 
     <details class="track-detail b reveal">
@@ -1379,35 +1283,6 @@
           <p class="detail-desc">졸업예정자, 취업준비생, 이직자가 직무 방향을 탐색하고 지원 가능한 수준의 포트폴리오·이력서·자기소개서·면접 스토리를 완성하는 과정입니다.</p>
         </div>
       </summary>
-      <div class="week-list">
-        <div class="week-row"><span>1주차</span><span>취업 방향 진단</span></div>
-        <div class="week-row"><span>2주차</span><span>직무 이해</span></div>
-        <div class="week-row"><span>3주차</span><span>기존 작업물 분석</span></div>
-        <div class="week-row"><span>4주차</span><span>포트폴리오 전략 수립</span></div>
-        <div class="week-row"><span>5주차</span><span>대표 프로젝트 리빌드 1</span></div>
-        <div class="week-row"><span>6주차</span><span>대표 프로젝트 리빌드 2</span></div>
-        <div class="week-row"><span>7주차</span><span>보조 프로젝트 정리</span></div>
-        <div class="week-row"><span>8주차</span><span>중간 포트폴리오 리뷰</span></div>
-        <div class="week-row"><span>9주차</span><span>포트폴리오 디자인 편집</span></div>
-        <div class="week-row"><span>10주차</span><span>자기소개서 방향 설정</span></div>
-        <div class="week-row"><span>11주차</span><span>이력서·프로필 작성</span></div>
-        <div class="week-row"><span>12주차</span><span>기업 분석 &amp; 지원 전략</span></div>
-        <div class="week-row"><span>13주차</span><span>면접 스토리 구성</span></div>
-        <div class="week-row"><span>14주차</span><span>모의면접</span></div>
-        <div class="week-row"><span>15주차</span><span>최종 포트폴리오 완성</span></div>
-        <div class="week-row"><span>16주차</span><span>최종 리뷰 &amp; 지원 플랜</span></div>
-      </div>
-      <div class="output-wrap">
-        <p class="output-title">최종 산출물</p>
-        <div class="output-chips">
-          <span class="output-chip">나만의 포트폴리오</span>
-          <span class="output-chip">면접 준비</span>
-          <span class="output-chip">자기소개서</span>
-          <span class="output-chip">이력서</span>
-          <span class="output-chip">지원 플랜</span>
-          <span class="output-chip">역량별 실무프로젝트 참여</span>
-        </div>
-      </div>
     </details>
 
     <details class="track-detail c reveal">
@@ -1418,35 +1293,6 @@
           <p class="detail-desc">예비창업자와 프리랜서 희망자가 경력·아이템 가능성을 분석하고, 사업기획서·지원사업·자금 확보까지 연결되는 실행 계획을 만드는 과정입니다.</p>
         </div>
       </summary>
-      <div class="week-list">
-        <div class="week-row"><span>1주차</span><span>커리어·창업 진단</span></div>
-        <div class="week-row"><span>2주차</span><span>방향 설정</span></div>
-        <div class="week-row"><span>3주차</span><span>시장·직무·사업 분석</span></div>
-        <div class="week-row"><span>4주차</span><span>개인 포지셔닝</span></div>
-        <div class="week-row"><span>5주차</span><span>이직형: 경력 프로젝트 정리 / 창업형: 아이템 정의</span></div>
-        <div class="week-row"><span>6주차</span><span>경쟁 분석</span></div>
-        <div class="week-row"><span>7주차</span><span>콘셉트 전략</span></div>
-        <div class="week-row"><span>8주차</span><span>중간 발표</span></div>
-        <div class="week-row"><span>9주차</span><span>결과물 구조 설계</span></div>
-        <div class="week-row"><span>10주차</span><span>핵심 콘텐츠 제작</span></div>
-        <div class="week-row"><span>11주차</span><span>비주얼 전략</span></div>
-        <div class="week-row"><span>12주차</span><span>제안서·포트폴리오 제작</span></div>
-        <div class="week-row"><span>13주차</span><span>수익화·실행 계획</span></div>
-        <div class="week-row"><span>14주차</span><span>피칭·면접 훈련</span></div>
-        <div class="week-row"><span>15주차</span><span>최종 보완</span></div>
-        <div class="week-row"><span>16주차</span><span>최종 발표 &amp; 액션 플랜</span></div>
-      </div>
-      <div class="output-wrap">
-        <p class="output-title">최종 산출물</p>
-        <div class="output-chips">
-          <span class="output-chip">아이템 개발전략</span>
-          <span class="output-chip">경력 포트폴리오</span>
-          <span class="output-chip">제안서</span>
-          <span class="output-chip">사업기획서</span>
-          <span class="output-chip">수익화 계획</span>
-          <span class="output-chip">최종 액션 플랜</span>
-        </div>
-      </div>
     </details>
   </section>
 
@@ -1783,15 +1629,6 @@
     });
   });
 
-  /* 커리큘럼 아코디언 */
-  document.querySelectorAll('.track-detail').forEach(detail => {
-    detail.addEventListener('toggle', () => {
-      if (!detail.open) return;
-      document.querySelectorAll('.track-detail').forEach(other => {
-        if (other !== detail) other.removeAttribute('open');
-      });
-    });
-  });
 </script>
 </body>
 </html>
