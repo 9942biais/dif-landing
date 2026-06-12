@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>DIF — Design Inner Force</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       color-scheme: light;
@@ -25,7 +33,9 @@
       --max: 430px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Noto Sans KR', sans-serif;
@@ -51,10 +61,17 @@
       transform: translateY(28px);
       transition: opacity 0.65s ease, transform 0.65s ease;
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ── Shared ── */
-    .section { padding: 64px 24px; }
+    .section {
+      padding: 64px 24px;
+    }
+
     .tag {
       display: inline-block;
       font-size: 11px;
@@ -62,30 +79,34 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      background: rgba(37,99,235,0.08);
-      border: 1px solid rgba(37,99,235,0.18);
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.18);
       border-radius: 100px;
       padding: 4px 12px;
       margin-bottom: 16px;
     }
+
     .section-title {
       font-size: 24px;
       font-weight: 900;
       line-height: 1.35;
       margin-bottom: 8px;
     }
+
     .section-sub-title {
       font-size: 16px;
       color: var(--accent);
       line-height: 1.7;
       margin-bottom: 8px;
     }
+
     .section-sub {
       font-size: 14px;
       color: var(--muted);
       line-height: 1.7;
       margin-bottom: 36px;
     }
+
     .divider {
       width: 100%;
       height: 1px;
@@ -102,12 +123,14 @@
       background: #0F1E3A;
       color: #FFFFFF;
     }
+
     .hero-media {
       position: absolute;
       inset: 0;
       z-index: 0;
       display: block;
     }
+
     .hero-media img {
       width: 100%;
       height: 100%;
@@ -115,19 +138,22 @@
       object-fit: cover;
       object-position: 34% center;
     }
+
     .hero-bg {
       position: absolute;
       inset: 0;
       z-index: 1;
       background:
-        linear-gradient(90deg, rgba(9,23,49,0.9) 0%, rgba(9,23,49,0.76) 66%, rgba(9,23,49,0.58) 100%),
-        linear-gradient(180deg, rgba(9,23,49,0.12) 0%, rgba(9,23,49,0.42) 100%);
+        linear-gradient(90deg, rgba(9, 23, 49, 0.9) 0%, rgba(9, 23, 49, 0.76) 66%, rgba(9, 23, 49, 0.58) 100%),
+        linear-gradient(180deg, rgba(9, 23, 49, 0.12) 0%, rgba(9, 23, 49, 0.42) 100%);
       pointer-events: none;
     }
-    .hero > :not(.hero-media):not(.hero-bg) {
+
+    .hero> :not(.hero-media):not(.hero-bg) {
       position: relative;
       z-index: 2;
     }
+
     .hero-logo {
       font-size: 11px;
       font-weight: 700;
@@ -139,6 +165,7 @@
       align-items: center;
       gap: 10px;
     }
+
     .hero-logo::before {
       content: '';
       width: 24px;
@@ -146,13 +173,15 @@
       background: #93C5FD;
       display: inline-block;
     }
+
     .hero-kicker {
       font-size: 13px;
       font-weight: 500;
-      color: rgba(255,255,255,0.76);
+      color: rgba(255, 255, 255, 0.76);
       margin-bottom: 16px;
       letter-spacing: 0.04em;
     }
+
     .hero-title {
       font-size: 34px;
       font-weight: 900;
@@ -160,17 +189,20 @@
       margin-bottom: 20px;
       word-break: keep-all;
     }
+
     .hero-title em {
       font-style: normal;
       color: #60A5FA;
     }
+
     .hero-desc {
       font-size: 15px;
-      color: rgba(255,255,255,0.76);
+      color: rgba(255, 255, 255, 0.76);
       line-height: 1.8;
       margin-bottom: 40px;
       word-break: keep-all;
     }
+
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -185,20 +217,32 @@
       cursor: pointer;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 32px rgba(37,99,235,0.24);
+      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.24);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,99,235,0.32); }
-    .btn-primary svg { width: 16px; height: 16px; }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(37, 99, 235, 0.32);
+    }
+
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+    }
 
     /* ════════════════════════════════
        2. PAIN POINT
     ════════════════════════════════ */
-    .pain { background: var(--bg2); }
+    .pain {
+      background: var(--bg2);
+    }
+
     .pain-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
+
     .pain-item {
       display: flex;
       align-items: flex-start;
@@ -208,26 +252,33 @@
       border-radius: var(--radius);
       padding: 18px 16px;
     }
+
     .pain-icon {
       font-size: 22px;
       flex-shrink: 0;
       margin-top: 1px;
     }
+
     .pain-item p {
       font-size: 14px;
       line-height: 1.65;
       color: var(--text);
       word-break: keep-all;
     }
-    .pain-item p strong { color: var(--accent); }
+
+    .pain-item p strong {
+      color: var(--accent);
+    }
+
     .pain-answer {
       margin-top: 32px;
       padding: 22px 18px;
-      background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(14,165,233,0.06));
-      border: 1px solid rgba(37,99,235,0.18);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.06));
+      border: 1px solid rgba(37, 99, 235, 0.18);
       border-radius: var(--radius);
       text-align: center;
     }
+
     .pain-answer p {
       font-size: 15px;
       font-weight: 700;
@@ -235,7 +286,10 @@
       line-height: 1.65;
       word-break: keep-all;
     }
-    .pain-answer span { color: var(--accent); }
+
+    .pain-answer span {
+      color: var(--accent);
+    }
 
     /* ════════════════════════════════
        3. ABOUT DIF
@@ -250,6 +304,7 @@
       border-radius: var(--radius);
       background: var(--bg3);
     }
+
     .about-media img {
       width: 100%;
       height: 100%;
@@ -257,6 +312,7 @@
       object-fit: cover;
       object-position: center 52%;
     }
+
     .about-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -264,24 +320,28 @@
       padding: 28px 22px;
       margin-bottom: 16px;
     }
+
     .about-card h3 {
       font-size: 17px;
       font-weight: 700;
       margin-bottom: 10px;
       color: var(--accent2);
     }
+
     .about-card p {
       font-size: 14px;
       line-height: 1.75;
       color: var(--muted);
       word-break: keep-all;
     }
+
     .fields-wrap {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 24px;
     }
+
     .field-chip {
       font-size: 12px;
       font-weight: 500;
@@ -295,79 +355,134 @@
     /* ════════════════════════════════
        MENTORS
     ════════════════════════════════ */
-    .mentors { background: var(--bg2); }
+    .mentors {
+      background: var(--bg2);
+    }
+
     .mentor-grid {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
+
     .mentor-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 22px 18px;
-    }
-    .mentor-head {
+      border-radius: 28px;
+      overflow: hidden;
       display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
+      flex-direction: column;
+      width: 100%;
+      height: 635px;
+      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.04);
     }
-    .mentor-initial {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+
+    @supports (aspect-ratio: 1) {
+      .mentor-card {
+        height: auto;
+        aspect-ratio: 10 / 16.72;
+      }
+    }
+
+    .mentor-img-wrap {
+      width: 100%;
+      height: 63.6%;
+      overflow: hidden;
+      position: relative;
+      background: var(--bg3);
+    }
+
+    .mentor-img-wrap::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 120px;
+      background: linear-gradient(180deg, transparent 0%, var(--card) 95%);
+      pointer-events: none;
+    }
+
+    .mentor-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+    }
+
+    .mentor-info {
+      width: 100%;
+      height: 36.4%;
+      padding: 16px 24px 20px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-size: 18px;
-      font-weight: 900;
-      flex-shrink: 0;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+      box-sizing: border-box;
     }
-    .mentor-card:nth-child(1) .mentor-initial { background: var(--accent); }
-    .mentor-card:nth-child(2) .mentor-initial { background: var(--accent2); }
-    .mentor-card:nth-child(3) .mentor-initial { background: #1D4ED8; }
+
+    .mentor-meta {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
     .mentor-name {
-      font-size: 17px;
+      font-size: 23px;
       font-weight: 900;
-      margin-bottom: 4px;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
     }
+
     .mentor-role {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.45;
-      word-break: keep-all;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
     }
+
     .mentor-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
     }
+
     .mentor-list li {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
-      font-size: 13px;
+      gap: 6px;
+      font-size: 15px;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.6;
       word-break: keep-all;
     }
+
     .mentor-list li::before {
       content: '';
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: rgba(37,99,235,0.78);
+      background: var(--accent);
+      opacity: 0.6;
       flex-shrink: 0;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     /* ════════════════════════════════
        GALLERY (현장 기록)
     ════════════════════════════════ */
-    .gallery { background: var(--bg2); }
+    .gallery {
+      background: var(--bg2);
+    }
 
     /* 탭 버튼 */
     .gallery-tabs {
@@ -378,7 +493,11 @@
       margin-bottom: 24px;
       padding-bottom: 2px;
     }
-    .gallery-tabs::-webkit-scrollbar { display: none; }
+
+    .gallery-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
     .gtab {
       flex-shrink: 0;
       font-size: 12px;
@@ -392,6 +511,7 @@
       transition: background 0.2s, color 0.2s, border-color 0.2s;
       white-space: nowrap;
     }
+
     .gtab.active {
       background: var(--accent);
       color: #FFFFFF;
@@ -399,8 +519,13 @@
     }
 
     /* 탭 패널 */
-    .gallery-panel { display: none; }
-    .gallery-panel.active { display: block; }
+    .gallery-panel {
+      display: none;
+    }
+
+    .gallery-panel.active {
+      display: block;
+    }
 
     /* 2열 마소너리 — 좌→우 순서, 빈공간 없음 */
     .gallery-grid {
@@ -409,18 +534,22 @@
       grid-auto-rows: 1px;
       gap: 8px;
     }
+
     .gallery-grid img {
       width: 100%;
       height: auto;
       display: block;
       border-radius: 10px;
-      background: rgba(37,99,235,0.06);
+      background: rgba(37, 99, 235, 0.06);
     }
 
     /* ════════════════════════════════
        4. 3대 트랙
     ════════════════════════════════ */
-    .tracks { background: var(--bg2); }
+    .tracks {
+      background: var(--bg2);
+    }
+
     .track-card {
       background: #10213F;
       border: 1px solid var(--border);
@@ -432,63 +561,92 @@
       color: #FFFFFF;
       isolation: isolate;
     }
+
     .track-media {
       position: absolute;
       inset: 0;
       z-index: -2;
       display: block;
     }
+
     .track-media img {
       width: 100%;
       height: 100%;
       display: block;
       object-fit: cover;
     }
+
     .track-card::after {
       content: '';
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(110deg, rgba(8,23,48,0.94) 0%, rgba(8,23,48,0.87) 58%, rgba(8,23,48,0.68) 100%);
+      background: linear-gradient(110deg, rgba(8, 23, 48, 0.94) 0%, rgba(8, 23, 48, 0.87) 58%, rgba(8, 23, 48, 0.68) 100%);
       pointer-events: none;
     }
+
     .track-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 3px;
       z-index: 1;
     }
-    .track-card.t1::before { background: linear-gradient(90deg, #2563EB, #60A5FA); }
-    .track-card.t2::before { background: linear-gradient(90deg, #0EA5E9, #38BDF8); }
-    .track-card.t3::before { background: linear-gradient(90deg, #1E40AF, #2563EB); }
+
+    .track-card.t1::before {
+      background: linear-gradient(90deg, #2563EB, #60A5FA);
+    }
+
+    .track-card.t2::before {
+      background: linear-gradient(90deg, #0EA5E9, #38BDF8);
+    }
+
+    .track-card.t3::before {
+      background: linear-gradient(90deg, #1E40AF, #2563EB);
+    }
+
     .track-num {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.68);
+      color: rgba(255, 255, 255, 0.68);
       margin-bottom: 10px;
     }
+
     .track-name {
       font-size: 20px;
       font-weight: 900;
       margin-bottom: 10px;
     }
-    .track-card.t1 .track-name { color: #93C5FD; }
-    .track-card.t2 .track-name { color: #7DD3FC; }
-    .track-card.t3 .track-name { color: #BFDBFE; }
+
+    .track-card.t1 .track-name {
+      color: #93C5FD;
+    }
+
+    .track-card.t2 .track-name {
+      color: #7DD3FC;
+    }
+
+    .track-card.t3 .track-name {
+      color: #BFDBFE;
+    }
+
     .track-desc {
       font-size: 14px;
-      color: rgba(255,255,255,0.76);
+      color: rgba(255, 255, 255, 0.76);
       line-height: 1.75;
       margin-bottom: 18px;
       word-break: keep-all;
     }
+
     .track-items {
       display: flex;
       flex-direction: column;
       gap: 7px;
     }
+
     .track-item {
       font-size: 13px;
       color: #FFFFFF;
@@ -496,9 +654,10 @@
       align-items: flex-start;
       gap: 8px;
     }
+
     .track-item::before {
       content: '→';
-      color: rgba(255,255,255,0.62);
+      color: rgba(255, 255, 255, 0.62);
       flex-shrink: 0;
       font-size: 12px;
       margin-top: 1px;
@@ -512,6 +671,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
+
     .prog-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -521,13 +681,18 @@
       flex-direction: column;
       gap: 10px;
     }
-    .prog-icon { font-size: 26px; }
+
+    .prog-icon {
+      font-size: 26px;
+    }
+
     .prog-title {
       font-size: 13px;
       font-weight: 700;
       line-height: 1.45;
       word-break: keep-all;
     }
+
     .prog-desc {
       font-size: 12px;
       color: var(--muted);
@@ -538,25 +703,31 @@
     /* ════════════════════════════════
        CURRICULUM
     ════════════════════════════════ */
-    .curriculum { background: var(--bg2); }
+    .curriculum {
+      background: var(--bg2);
+    }
+
     .coaching-points {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-bottom: 24px;
     }
+
     .coaching-point {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px 14px;
     }
+
     .coaching-point strong {
       display: block;
       font-size: 18px;
       color: var(--accent);
       margin-bottom: 6px;
     }
+
     .coaching-point span {
       display: block;
       font-size: 12px;
@@ -564,6 +735,7 @@
       line-height: 1.55;
       word-break: keep-all;
     }
+
     .track-detail {
       background: var(--card);
       border: 1px solid var(--border);
@@ -571,14 +743,22 @@
       margin-bottom: 14px;
       overflow: hidden;
     }
-    .track-detail:last-child { margin-bottom: 0; }
+
+    .track-detail:last-child {
+      margin-bottom: 0;
+    }
+
     .track-detail summary {
       list-style: none;
       padding: 22px 18px;
       display: flex;
       align-items: flex-start;
     }
-    .track-detail summary::-webkit-details-marker { display: none; }
+
+    .track-detail summary::-webkit-details-marker {
+      display: none;
+    }
+
     .detail-label {
       display: block;
       font-size: 11px;
@@ -587,6 +767,7 @@
       letter-spacing: 0.1em;
       margin-bottom: 8px;
     }
+
     .detail-title {
       font-size: 19px;
       font-weight: 900;
@@ -594,29 +775,45 @@
       margin-bottom: 8px;
       word-break: keep-all;
     }
-    .track-detail.a .detail-title { color: var(--accent); }
-    .track-detail.b .detail-title { color: var(--accent2); }
-    .track-detail.c .detail-title { color: #1E40AF; }
+
+    .track-detail.a .detail-title {
+      color: var(--accent);
+    }
+
+    .track-detail.b .detail-title {
+      color: var(--accent2);
+    }
+
+    .track-detail.c .detail-title {
+      color: #1E40AF;
+    }
+
     .detail-desc {
       font-size: 13px;
       color: var(--muted);
       line-height: 1.65;
       word-break: keep-all;
     }
+
     /* ════════════════════════════════
        6. ACTIVITIES
     ════════════════════════════════ */
-    .activities { background: var(--bg2); }
+    .activities {
+      background: var(--bg2);
+    }
+
     .activity-list {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
+
     .activity-item {
       display: flex;
       gap: 18px;
       align-items: flex-start;
     }
+
     .activity-icon-wrap {
       width: 48px;
       height: 48px;
@@ -629,7 +826,13 @@
       font-size: 22px;
       flex-shrink: 0;
     }
-    .activity-text h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+
+    .activity-text h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
     .activity-text p {
       font-size: 13px;
       color: var(--muted);
@@ -640,7 +843,12 @@
     /* ════════════════════════════════
        7. FOR WHOM
     ════════════════════════════════ */
-    .whom-list { display: flex; flex-direction: column; gap: 12px; }
+    .whom-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
     .whom-card {
       display: flex;
       gap: 16px;
@@ -650,6 +858,7 @@
       border-radius: var(--radius);
       padding: 20px 16px;
     }
+
     .whom-badge {
       min-width: 48px;
       height: 48px;
@@ -663,22 +872,46 @@
       color: #FFFFFF;
       flex-shrink: 0;
     }
-    .whom-badge.b1 { background: var(--accent); }
-    .whom-badge.b2 { background: var(--accent2); }
-    .whom-badge.b3 { background: #1D4ED8; }
-    .whom-text h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-    .whom-text p { font-size: 13px; color: var(--muted); line-height: 1.65; word-break: keep-all; }
+
+    .whom-badge.b1 {
+      background: var(--accent);
+    }
+
+    .whom-badge.b2 {
+      background: var(--accent2);
+    }
+
+    .whom-badge.b3 {
+      background: #1D4ED8;
+    }
+
+    .whom-text h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .whom-text p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      word-break: keep-all;
+    }
 
     /* ════════════════════════════════
        8. RECRUITMENT
     ════════════════════════════════ */
-    .recruit { background: var(--bg2); }
+    .recruit {
+      background: var(--bg2);
+    }
+
     .recruit-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
       margin-bottom: 24px;
     }
+
     .recruit-box {
       background: var(--card);
       border: 1px solid var(--border);
@@ -687,6 +920,7 @@
       min-width: 0;
       text-align: center;
     }
+
     .recruit-box .label {
       font-size: 12px;
       font-weight: 900;
@@ -696,6 +930,7 @@
       margin-bottom: 8px;
       white-space: nowrap;
     }
+
     .recruit-box .value {
       font-size: 15px;
       font-weight: 900;
@@ -703,32 +938,51 @@
       line-height: 1.35;
       word-break: keep-all;
     }
-    .recruit-box .value em { font-style: normal; color: var(--accent); }
+
+    .recruit-box .value em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
     .recruit-note {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px 16px;
     }
-    .recruit-note p { font-size: 13px; color: var(--muted); line-height: 1.7; word-break: keep-all; }
-    .recruit-note p strong { color: var(--text); }
+
+    .recruit-note p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    .recruit-note p strong {
+      color: var(--text);
+    }
 
     /* ════════════════════════════════
        FIRST COHORT OFFER
     ════════════════════════════════ */
-    .offer { background: var(--bg2); }
+    .offer {
+      background: var(--bg2);
+    }
+
     .season-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-bottom: 24px;
     }
+
     .season-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px 14px;
     }
+
     .season-card .label {
       font-size: 11px;
       font-weight: 900;
@@ -736,36 +990,42 @@
       letter-spacing: 0.08em;
       margin-bottom: 8px;
     }
+
     .season-card .value {
       font-size: 14px;
       font-weight: 900;
       line-height: 1.45;
       word-break: keep-all;
     }
+
     .price-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
       margin-bottom: 24px;
     }
+
     .price-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px 14px;
     }
+
     .price-head {
       display: flex;
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 12px;
     }
+
     .price-track {
       font-size: 15px;
       font-weight: 900;
       color: var(--text);
       word-break: keep-all;
     }
+
     .price-target {
       font-size: 12px;
       color: var(--muted);
@@ -773,11 +1033,13 @@
       text-align: right;
       word-break: keep-all;
     }
+
     .price-values {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 6px;
     }
+
     .price-value {
       background: var(--bg3);
       border: 1px solid var(--border);
@@ -786,10 +1048,12 @@
       text-align: center;
       min-width: 0;
     }
+
     .price-value.highlight {
-      background: rgba(37,99,235,0.08);
-      border-color: rgba(37,99,235,0.28);
+      background: rgba(37, 99, 235, 0.08);
+      border-color: rgba(37, 99, 235, 0.28);
     }
+
     .price-value span {
       display: block;
       font-size: 9px;
@@ -798,6 +1062,7 @@
       margin-bottom: 5px;
       white-space: nowrap;
     }
+
     .price-value strong {
       display: block;
       font-size: 12px;
@@ -806,10 +1071,15 @@
       line-height: 1.3;
       white-space: nowrap;
     }
-    .price-value.highlight strong { color: var(--accent); }
+
+    .price-value.highlight strong {
+      color: var(--accent);
+    }
+
     .path-heading {
       margin: 8px 0 14px;
     }
+
     .path-heading h3 {
       font-size: 18px;
       font-weight: 900;
@@ -817,23 +1087,27 @@
       margin-bottom: 6px;
       word-break: keep-all;
     }
+
     .path-heading p {
       font-size: 13px;
       color: var(--muted);
       line-height: 1.65;
       word-break: keep-all;
     }
+
     .path-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
+
     .path-item {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px 14px;
     }
+
     .path-item strong {
       display: block;
       font-size: 15px;
@@ -841,11 +1115,13 @@
       margin-bottom: 12px;
       word-break: keep-all;
     }
+
     .path-meta {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
+
     .path-meta p {
       display: grid;
       grid-template-columns: 44px 1fr;
@@ -856,15 +1132,18 @@
       line-height: 1.55;
       word-break: keep-all;
     }
+
     .path-meta b {
       display: block;
       color: var(--accent);
       font-weight: 900;
     }
+
     .path-meta span {
       display: block;
     }
-    .path-item > span {
+
+    .path-item>span {
       display: block;
       font-size: 12px;
       color: var(--muted);
@@ -881,13 +1160,15 @@
       position: relative;
       overflow: hidden;
     }
+
     .cta::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 90% 70% at 50% 100%, rgba(37,99,235,0.09) 0%, transparent 70%);
+      background: radial-gradient(ellipse 90% 70% at 50% 100%, rgba(37, 99, 235, 0.09) 0%, transparent 70%);
       pointer-events: none;
     }
+
     .cta-eyebrow {
       font-size: 12px;
       font-weight: 700;
@@ -896,6 +1177,7 @@
       color: var(--accent);
       margin-bottom: 20px;
     }
+
     .cta-title {
       font-size: 26px;
       font-weight: 900;
@@ -903,7 +1185,12 @@
       margin-bottom: 14px;
       word-break: keep-all;
     }
-    .cta-title em { font-style: normal; color: var(--accent); }
+
+    .cta-title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
     .cta-desc {
       font-size: 14px;
       color: var(--muted);
@@ -911,6 +1198,7 @@
       margin-bottom: 36px;
       word-break: keep-all;
     }
+
     .btn-cta {
       display: inline-flex;
       align-items: center;
@@ -924,14 +1212,23 @@
       border: none;
       cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 8px 40px rgba(37,99,235,0.26);
+      box-shadow: 0 8px 40px rgba(37, 99, 235, 0.26);
       transition: transform 0.2s, box-shadow 0.2s;
       width: 100%;
       max-width: 320px;
       justify-content: center;
     }
-    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 48px rgba(37,99,235,0.34); }
-    .cta-sub { margin-top: 16px; font-size: 12px; color: var(--muted); }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 48px rgba(37, 99, 235, 0.34);
+    }
+
+    .cta-sub {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+    }
 
     footer {
       text-align: center;
@@ -941,7 +1238,10 @@
       color: var(--muted);
       line-height: 1.8;
     }
-    footer strong { color: var(--text); }
+
+    footer strong {
+      color: var(--text);
+    }
 
     .floating-popups {
       position: fixed;
@@ -954,19 +1254,21 @@
       transform: translateX(-50%);
       pointer-events: none;
     }
+
     .floating-popup {
       position: relative;
       overflow: hidden;
       border-radius: 0;
       background:
-        radial-gradient(circle at 50% -12%, rgba(246,91,20,0.28), transparent 44%),
+        radial-gradient(circle at 50% -12%, rgba(246, 91, 20, 0.28), transparent 44%),
         linear-gradient(180deg, #1E1010 0%, #120A0A 100%);
       color: #FFFFFF;
-      box-shadow: 0 22px 70px rgba(0,0,0,0.36);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.36);
       padding: 56px 24px 28px;
       pointer-events: auto;
       text-align: center;
     }
+
     .popup-close {
       position: absolute;
       top: 12px;
@@ -975,13 +1277,14 @@
       height: 30px;
       border: 2px solid #FFFFFF;
       border-radius: 50%;
-      background: rgba(255,255,255,0.92);
+      background: rgba(255, 255, 255, 0.92);
       color: #150C0C;
       font-size: 18px;
       font-weight: 900;
       line-height: 1;
       cursor: pointer;
     }
+
     .popup-eyebrow {
       display: block;
       margin-bottom: 18px;
@@ -990,6 +1293,7 @@
       font-weight: 900;
       letter-spacing: 0.12em;
     }
+
     .popup-main-title {
       margin: 0 0 22px;
       font-size: clamp(27px, 7.2vw, 34px);
@@ -998,29 +1302,34 @@
       letter-spacing: 0;
       word-break: keep-all;
     }
+
     .popup-main-title em {
       display: inline-block;
       color: #FF7A2F;
       font-style: normal;
     }
+
     .popup-lead {
       margin: 0 0 36px;
       font-size: 17px;
       line-height: 1.65;
       word-break: keep-all;
     }
+
     .popup-event-box {
       overflow: hidden;
-      border: 1px solid rgba(255,122,47,0.75);
+      border: 1px solid rgba(255, 122, 47, 0.75);
       border-radius: 8px;
       text-align: left;
       background: #252525;
     }
+
     .popup-event-top {
       padding: 30px 34px 28px;
       background: #F26317;
       color: #FFFFFF;
     }
+
     .event-label {
       display: block;
       margin-bottom: 14px;
@@ -1028,6 +1337,7 @@
       font-weight: 900;
       letter-spacing: 0.12em;
     }
+
     .event-title {
       display: block;
       margin-bottom: 14px;
@@ -1036,12 +1346,14 @@
       line-height: 1.08;
       word-break: keep-all;
     }
+
     .event-desc {
       margin: 0 0 20px;
       font-size: 15px;
       line-height: 1.45;
       word-break: keep-all;
     }
+
     .event-desc .primary {
       display: block;
       margin-bottom: 8px;
@@ -1049,36 +1361,41 @@
       font-weight: 500;
       color: #FFFFFF;
     }
+
     .event-desc .secondary {
       display: block;
       font-size: 13px;
       font-weight: 600;
       line-height: 1.5;
-      color: rgba(255,255,255,0.76);
+      color: rgba(255, 255, 255, 0.76);
     }
+
     .popup-event-top .popup-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 38px;
-      border: 1px solid rgba(255,255,255,0.42);
+      border: 1px solid rgba(255, 255, 255, 0.42);
       border-radius: 100px;
-      background: rgba(255,255,255,0.18);
+      background: rgba(255, 255, 255, 0.18);
       color: #FFFFFF;
       padding: 0 16px;
       font-size: 15px;
       font-weight: 900;
       text-decoration: none;
     }
+
     .popup-event-divider {
       border-top: 1px dashed rgba(255, 255, 255, 0.9);
       background: #252525;
     }
+
     .popup-event-bottom {
       padding: 28px 34px 30px;
       background: #292929;
       color: #FFFFFF;
     }
+
     .followup-title {
       margin: 0 0 18px;
       font-size: clamp(20px, 5.4vw, 25px);
@@ -1086,73 +1403,89 @@
       line-height: 1.5;
       word-break: keep-all;
     }
+
     .followup-title .subline {
       display: block;
       font-weight: 500;
     }
+
     .followup-title .highlight {
       display: block;
       color: #FF7A2F;
       font-weight: 900;
     }
+
     .followup-desc {
       margin: 0;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255, 255, 255, 0.82);
       font-size: 16px;
       font-weight: 700;
       line-height: 1.55;
       word-break: keep-all;
     }
+
     @media (max-width: 380px) {
       .floating-popup {
         padding: 48px 18px 22px;
       }
+
       .popup-lead {
         margin-bottom: 28px;
         font-size: 15px;
       }
+
       .popup-event-top,
       .popup-event-bottom {
         padding-left: 24px;
         padding-right: 24px;
       }
     }
+
     @media (max-height: 680px) {
       .floating-popup {
         padding-top: 42px;
         padding-bottom: 20px;
       }
+
       .popup-eyebrow {
         margin-bottom: 10px;
         font-size: 12px;
       }
+
       .popup-main-title {
         margin-bottom: 14px;
         font-size: 25px;
       }
+
       .popup-lead {
         margin-bottom: 20px;
         font-size: 14px;
       }
+
       .popup-event-top {
         padding-top: 22px;
         padding-bottom: 20px;
       }
+
       .popup-event-bottom {
         padding-top: 22px;
         padding-bottom: 22px;
       }
+
       .event-title {
         font-size: 30px;
       }
+
       .followup-title {
         margin-bottom: 10px;
         font-size: 19px;
       }
+
       .followup-desc {
         font-size: 14px;
       }
     }
+
     @media (max-width: 359px) {
       .floating-popups {
         width: calc(100vw - 12px);
@@ -1160,678 +1493,762 @@
     }
   </style>
 </head>
+
 <body>
-<div class="page">
+  <div class="page">
 
-  <!-- ① HERO -->
-  <section class="hero">
-    <picture class="hero-media" aria-hidden="true">
-      <img
-        src="./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg"
-        srcset="./recode-img-optimized/강의-프로젝트/design-lecture-04-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg 720w"
-        sizes="(max-width: 430px) 100vw, 430px"
-        alt=""
-        width="720"
-        height="529"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </picture>
-    <div class="hero-bg"></div>
-    <div class="hero-logo">DIF</div>
-    <p class="hero-kicker">Design Inner Force</p>
-    <h1 class="hero-title">
-      나의 디자인!<br />
-      돌아가는 길 말고,<em>지름길로</em> 안내합니다.
-    </h1>
-    <p class="hero-desc">
-      안절부절 생각만 하다가는 올해도 끝납니다.<br />
-      나에게 맞는 전략적 디자인 역량 업그레이드!<br />
-      학업과 취업, 실무 디자이너와 함께 꿈을 실현해 갑니다.
-    </p>
-    <a href="https://forms.gle/sLNrHw4ThXeVKhcN8" class="btn-primary">
-      설명회 참가 신청하기
-      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-  </section>
+    <!-- ① HERO -->
+    <section class="hero">
+      <picture class="hero-media" aria-hidden="true">
+        <img src="./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg"
+          srcset="./recode-img-optimized/강의-프로젝트/design-lecture-04-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg 720w"
+          sizes="(max-width: 430px) 100vw, 430px" alt="" width="720" height="529" loading="eager" fetchpriority="high"
+          decoding="async" />
+      </picture>
+      <div class="hero-bg"></div>
+      <div class="hero-logo">DIF</div>
+      <p class="hero-kicker">Design Inner Force</p>
+      <h1 class="hero-title">
+        나의 디자인!<br />
+        돌아가는 길 말고,<em>지름길로</em> 안내합니다.
+      </h1>
+      <p class="hero-desc">
+        안절부절 생각만 하다가는 올해도 끝납니다.<br />
+        나에게 맞는 전략적 디자인 역량 업그레이드!<br />
+        학업과 취업, 실무 디자이너와 함께 꿈을 실현해 갑니다.
+      </p>
+      <a href="https://forms.gle/sLNrHw4ThXeVKhcN8" class="btn-primary">
+        설명회 참가 신청하기
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </a>
+    </section>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- ② PAIN POINT -->
-  <section class="section pain">
-    <div class="tag">이런 고민 있으신가요?</div>
-    <h2 class="section-title reveal">혼자 고민하다<br />멈춰버린 적 있나요?</h2>
-    <div class="pain-list">
-      <div class="pain-item reveal">
-        <span class="pain-icon">📁</span>
-        <p><strong>벌써 3학년인데,</strong> 어떤 디자인이 맞는지 모르겠어요. 어떻게 준비를 해야될지, 방향성을 어떻게 잡아야 될지 모르겠어서 불안합니다.</p>
+    <!-- ② PAIN POINT -->
+    <section class="section pain">
+      <div class="tag">이런 고민 있으신가요?</div>
+      <h2 class="section-title reveal">혼자 고민하다<br />멈춰버린 적 있나요?</h2>
+      <div class="pain-list">
+        <div class="pain-item reveal">
+          <span class="pain-icon">📁</span>
+          <p><strong>벌써 3학년인데,</strong> 어떤 디자인이 맞는지 모르겠어요. 어떻게 준비를 해야될지, 방향성을 어떻게 잡아야 될지 모르겠어서 불안합니다.</p>
+        </div>
+        <div class="pain-item reveal">
+          <span class="pain-icon">😶</span>
+          <p><strong>졸업은 했고, 포트폴리오를 만들고 있긴 한데,</strong> 이게 맞는지, 취업을 할 수 있는건지 제대로 하고 있는지 모르겠어요.</p>
+        </div>
+        <div class="pain-item reveal">
+          <span class="pain-icon">💡</span>
+          <p><strong>아이디어는 있는데 어떻게 창업으로 이어갈지</strong> 막막해요. 브랜딩부터 자금 조달까지 아무것도 모릅니다.</p>
+        </div>
+        <div class="pain-item reveal">
+          <span class="pain-icon">🎓</span>
+          <p><strong>공모전에서 상도 타고 싶고, 학교생활도 알차게 보내고 싶고</strong> 체계적으로 하고 싶은데 이게 맞는지 방법을 잘 모르겠어요.</p>
+        </div>
       </div>
-      <div class="pain-item reveal">
-        <span class="pain-icon">😶</span>
-        <p><strong>졸업은 했고, 포트폴리오를 만들고 있긴 한데,</strong> 이게 맞는지, 취업을 할 수 있는건지 제대로 하고 있는지 모르겠어요.</p>
+      <div class="pain-answer reveal">
+        <p>조급하고 불안한 그 마음 잘 압니다.<br /><span>DIF와 함께하면 됩니다.</span></p>
       </div>
-      <div class="pain-item reveal">
-        <span class="pain-icon">💡</span>
-        <p><strong>아이디어는 있는데 어떻게 창업으로 이어갈지</strong> 막막해요. 브랜딩부터 자금 조달까지 아무것도 모릅니다.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ③ ABOUT DIF -->
+    <section class="section">
+      <div class="tag">About DIF</div>
+      <h2 class="section-title reveal">디자인의 내면에서<br /> 나오는 진짜 힘</h2>
+      <p class="section-sub reveal">DIF(Design Inner Force)는 실무 경험을 갖춘 멘토와 함께 디자이너로서의 방향을 잡아가는 융합형 컨설팅 프로젝트 그룹입니다. 강의를
+        듣는 게 아니라, 직접 만들고 피드백받으며 성장합니다.</p>
+      <picture class="about-media reveal">
+        <img src="./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg"
+          srcset="./recode-img-optimized/강의-프로젝트/service-design-project-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg 720w"
+          sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="참여자들이 함께 진행하는 서비스 디자인 프로젝트 현장" width="720"
+          height="960" loading="lazy" decoding="async" />
+      </picture>
+      <div class="about-card reveal">
+        <h3>우리가 다른 이유</h3>
+        <p>단순한 포트폴리오 클래스가 아닙니다. 학부생 과정·취업 준비 과정·창업/프리랜서 과정 3가지 트랙을 통해 각자의 목표에 맞는 실전 결과물을 만들어냅니다. 보고 따라하는 온라인 수업이 아니라 대면
+          1대1 코칭과 오프라인 네트워킹을 중심으로 운영됩니다.</p>
       </div>
-      <div class="pain-item reveal">
-        <span class="pain-icon">🎓</span>
-        <p><strong>공모전에서 상도 타고 싶고, 학교생활도 알차게 보내고 싶고</strong> 체계적으로 하고 싶은데 이게 맞는지 방법을 잘 모르겠어요.</p>
+      <div class="fields-wrap reveal">
+        <span class="field-chip">산업디자인</span>
+        <span class="field-chip">시각디자인</span>
+        <span class="field-chip">제품디자인</span>
+        <span class="field-chip">공간디자인</span>
+        <span class="field-chip">패션디자인</span>
+        <span class="field-chip">공예디자인</span>
+        <span class="field-chip">서비스디자인</span>
+        <span class="field-chip">기타 ETC</span>
       </div>
-    </div>
-    <div class="pain-answer reveal">
-      <p>조급하고 불안한 그 마음 잘 압니다.<br /><span>DIF와 함께하면 됩니다.</span></p>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- ③ ABOUT DIF -->
-  <section class="section">
-    <div class="tag">About DIF</div>
-    <h2 class="section-title reveal">디자인의 내면에서<br /> 나오는 진짜 힘</h2>
-    <p class="section-sub reveal">DIF(Design Inner Force)는 실무 경험을 갖춘 멘토와 함께 디자이너로서의 방향을 잡아가는 융합형 컨설팅 프로젝트 그룹입니다. 강의를 듣는 게 아니라, 직접 만들고 피드백받으며 성장합니다.</p>
-    <picture class="about-media reveal">
-      <img
-        src="./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg"
-        srcset="./recode-img-optimized/강의-프로젝트/service-design-project-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg 720w"
-        sizes="(max-width: 430px) calc(100vw - 48px), 382px"
-        alt="참여자들이 함께 진행하는 서비스 디자인 프로젝트 현장"
-        width="720"
-        height="960"
-        loading="lazy"
-        decoding="async"
-      />
-    </picture>
-    <div class="about-card reveal">
-      <h3>우리가 다른 이유</h3>
-      <p>단순한 포트폴리오 클래스가 아닙니다. 학부생 과정·취업 준비 과정·창업/프리랜서 과정 3가지 트랙을 통해 각자의 목표에 맞는 실전 결과물을 만들어냅니다. 보고 따라하는 온라인 수업이 아니라 대면 1대1 코칭과 오프라인 네트워킹을 중심으로 운영됩니다.</p>
-    </div>
-    <div class="fields-wrap reveal">
-      <span class="field-chip">산업디자인</span>
-      <span class="field-chip">시각디자인</span>
-      <span class="field-chip">제품디자인</span>
-      <span class="field-chip">공간디자인</span>
-      <span class="field-chip">패션디자인</span>
-      <span class="field-chip">공예디자인</span>
-      <span class="field-chip">서비스디자인</span>
-      <span class="field-chip">기타 ETC</span>
-    </div>
-  </section>
+    <!-- ④ MENTORS -->
+    <section class="section mentors">
+      <div class="tag">Mentors</div>
+      <h2 class="section-title reveal">산업 디자인 실무를 지나온<br /> 3명의 멘토진</h2>
+      <p class="section-sub reveal">제품·환경·브랜드·AI·서비스경험까지, 서로 다른 전문성을 가진 멘토가 트랙별 결과물을 함께 끌어올립니다.</p>
 
-  <div class="divider"></div>
-
-  <!-- ④ MENTORS -->
-  <section class="section mentors">
-    <div class="tag">Mentors</div>
-    <h2 class="section-title reveal">산업 디자인 실무를 지나온<br /> 3명의 멘토진</h2>
-    <p class="section-sub reveal">제품·환경·브랜드·AI·서비스경험까지, 서로 다른 전문성을 가진 멘토가 트랙별 결과물을 함께 끌어올립니다.</p>
-
-    <div class="mentor-grid">
-      <div class="mentor-card reveal">
-        <div class="mentor-head">
-          <div class="mentor-initial">J</div>
-          <div>
-            <p class="mentor-name">멘토 J</p>
-            <p class="mentor-role">디자인 프로젝트 총괄</p>
+      <div class="mentor-grid">
+        <div class="mentor-card reveal">
+          <div class="mentor-img-wrap">
+            <img class="mentor-photo" src="./mentors-img/J.jpg" alt="정윤규 멘토 프로필" />
+          </div>
+          <div class="mentor-info">
+            <div class="mentor-meta">
+              <h3 class="mentor-name">정윤규</h3>
+              <p class="mentor-role">디자인 프로젝트 총괄</p>
+            </div>
+            <ul class="mentor-list">
+              <li>디자인업 경력 20년차, 디자인 스튜디오 대표</li>
+              <li>산업디자인과 겸임교수 10년차</li>
+              <li>기업 디자인 자문 및 컨설팅위원</li>
+              <li>제품·환경·브랜드 디자인 프로젝트 300여건 수행</li>
+            </ul>
           </div>
         </div>
-        <ul class="mentor-list">
-          <li>디자인업 경력 20년차, 디자인 스튜디오 대표</li>
-          <li>산업디자인과 겸임교수 10년차</li>
-          <li>기업 디자인 자문 및 컨설팅위원</li>
-          <li>제품·환경·브랜드 디자인 프로젝트 300여건 수행</li>
-        </ul>
-      </div>
 
-      <div class="mentor-card reveal">
-        <div class="mentor-head">
-          <div class="mentor-initial">K</div>
-          <div>
-            <p class="mentor-name">멘토 K</p>
-            <p class="mentor-role">AI 활용 디자인 코치</p>
+        <div class="mentor-card reveal">
+          <div class="mentor-img-wrap">
+            <img class="mentor-photo" src="./mentors-img/C.png" alt="최연수 멘토 프로필" />
+          </div>
+          <div class="mentor-info">
+            <div class="mentor-meta">
+              <h3 class="mentor-name">최연수</h3>
+              <p class="mentor-role">서비스경험 디자인 코치</p>
+            </div>
+            <ul class="mentor-list">
+              <li>디자인업 경력 10년차, 디자인 스튜디오 대표</li>
+              <li>디자인전공 석사</li>
+              <li>시각·제품디자인 실무</li>
+              <li>UX/UI 서비스·경험디자인 전문가</li>
+            </ul>
           </div>
         </div>
-        <ul class="mentor-list">
-          <li>디자인업 경력 10년차, 디자인 스튜디오 대표</li>
-          <li>디자인 석사</li>
-          <li>인공지능사관학교 수석졸업</li>
-          <li>AI를 활용한 디자인 프로세스 코칭</li>
-        </ul>
-      </div>
 
-      <div class="mentor-card reveal">
-        <div class="mentor-head">
-          <div class="mentor-initial">C</div>
-          <div>
-            <p class="mentor-name">멘토 C</p>
-            <p class="mentor-role">서비스경험 디자인 코치</p>
+        <div class="mentor-card reveal">
+          <div class="mentor-img-wrap">
+            <img class="mentor-photo" src="./mentors-img/K.jpg" alt="김유빈 멘토 프로필" />
+          </div>
+          <div class="mentor-info">
+            <div class="mentor-meta">
+              <h3 class="mentor-name">김유빈</h3>
+              <p class="mentor-role">AI 활용 디자인 코치</p>
+            </div>
+            <ul class="mentor-list">
+              <li>디자인업 경력 10년차, 디자인 스튜디오 대표</li>
+              <li>디자인전공 석사</li>
+              <li>인공지능사관학교 수석졸업</li>
+              <li>AI를 활용한 디자인 프로세스 코칭</li>
+            </ul>
           </div>
         </div>
-        <ul class="mentor-list">
-          <li>디자인업 경력 10년차, 디자인 스튜디오 대표</li>
-          <li>디자인 석사</li>
-          <li>시각·제품디자인 실무</li>
-          <li>UX/UI 서비스·경험디자인 전문가</li>
-        </ul>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- ★ GALLERY — 실제 현장 기록 -->
-  <section class="section gallery">
-    <div class="tag">Gallery</div>
-    <h2 class="section-title reveal">직접 보여드립니다,<br />DIF의 현장</h2>
-    <p class="section-sub-title reveal">디자인 역량 업그레이드, <strong>취업성공 100%</strong></p>
-    <p class="section-sub reveal">실제 컨설팅·프로젝트·전시 현장을 확인하세요.</p>
+    <!-- ★ GALLERY — 실제 현장 기록 -->
+    <section class="section gallery">
+      <div class="tag">Gallery</div>
+      <h2 class="section-title reveal">직접 보여드립니다,<br />DIF의 현장</h2>
+      <p class="section-sub-title reveal">디자인 역량 업그레이드, <strong>취업성공 100%</strong></p>
+      <p class="section-sub reveal">실제 컨설팅·프로젝트·전시 현장을 확인하세요.</p>
 
-    <!-- 탭 -->
-    <div class="gallery-tabs reveal">
-      <button class="gtab active" data-panel="p1">강의 · 프로젝트</button>
-      <button class="gtab" data-panel="p2">컨설팅 · 포트폴리오</button>
-      <button class="gtab" data-panel="p3">브랜딩 · 전시</button>
-    </div>
-
-    <!-- 패널 1: 강의-프로젝트 폴더 -->
-    <div class="gallery-panel active reveal" id="p1">
-      <div class="gallery-grid">
-        <img src="./recode-img-optimized/강의-프로젝트/design-lecture-03-720.jpg" srcset="./recode-img-optimized/강의-프로젝트/design-lecture-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/design-lecture-03-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="디자인 강의 현장" loading="lazy" decoding="async" width="720" height="960" />
-        <img src="./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg" srcset="./recode-img-optimized/강의-프로젝트/design-lecture-04-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="디자인 강의" loading="lazy" decoding="async" width="720" height="529" />
-        <img src="./recode-img-optimized/강의-프로젝트/lecture-03-720.jpg" srcset="./recode-img-optimized/강의-프로젝트/lecture-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/lecture-03-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="강의 현장" loading="lazy" decoding="async" width="720" height="405" />
-        <img src="./recode-img-optimized/강의-프로젝트/service-design-project-02-720.jpg" srcset="./recode-img-optimized/강의-프로젝트/service-design-project-02-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-project-02-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 프로젝트" loading="lazy" decoding="async" width="720" height="960" />
-        <img src="./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg" srcset="./recode-img-optimized/강의-프로젝트/service-design-project-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 현장" loading="lazy" decoding="async" width="720" height="960" />
-        <img src="./recode-img-optimized/강의-프로젝트/service-design-village-01-720.jpg" srcset="./recode-img-optimized/강의-프로젝트/service-design-village-01-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-village-01-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 마을" loading="lazy" decoding="async" width="720" height="540" />
-        <img src="./recode-img-optimized/강의-프로젝트/service-design-village-03-720.jpg" srcset="./recode-img-optimized/강의-프로젝트/service-design-village-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-village-03-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 마을" loading="lazy" decoding="async" width="720" height="540" />
-        <img src="./recode-img-optimized/강의-프로젝트/service-design-village-09-720.jpg" srcset="./recode-img-optimized/강의-프로젝트/service-design-village-09-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-village-09-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 마을" loading="lazy" decoding="async" width="720" height="540" />
-        <img src="./recode-img-optimized/강의-프로젝트/service-design-village-14-720.jpg" srcset="./recode-img-optimized/강의-프로젝트/service-design-village-14-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-village-14-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 마을" loading="lazy" decoding="async" width="720" height="540" />
+      <!-- 탭 -->
+      <div class="gallery-tabs reveal">
+        <button class="gtab active" data-panel="p1">강의 · 프로젝트</button>
+        <button class="gtab" data-panel="p2">컨설팅 · 포트폴리오</button>
+        <button class="gtab" data-panel="p3">브랜딩 · 전시</button>
       </div>
-    </div>
 
-    <!-- 패널 2: 컨설팅-포트폴리오 폴더 -->
-    <div class="gallery-panel" id="p2">
-      <div class="gallery-grid">
-        <img data-src="./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-01-720.jpg" data-srcset="./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-01-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-01-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="에그 목업" loading="lazy" decoding="async" width="720" height="1080" />
-        <img data-src="./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-02-720.jpg" data-srcset="./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-02-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-02-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="에그 목업" loading="lazy" decoding="async" width="720" height="1080" />
-        <img data-src="./recode-img-optimized/컨설팅-포트폴리오/kick-ver2-sketch-03-720.jpg" data-srcset="./recode-img-optimized/컨설팅-포트폴리오/kick-ver2-sketch-03-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/kick-ver2-sketch-03-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="스케치 작업" loading="lazy" decoding="async" width="720" height="961" />
-        <img data-src="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-01-720.jpg" data-srcset="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-01-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-01-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="컨설팅 목업" loading="lazy" decoding="async" width="720" height="540" />
-        <img data-src="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-04-720.jpg" data-srcset="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-04-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-04-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="컨설팅 목업" loading="lazy" decoding="async" width="720" height="493" />
-        <img data-src="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-01-720.jpg" data-srcset="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-01-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-01-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="컨설팅 스케치" loading="lazy" decoding="async" width="720" height="524" />
-        <img data-src="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-02-720.jpg" data-srcset="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-02-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-02-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="컨설팅 스케치" loading="lazy" decoding="async" width="720" height="540" />
-      </div>
-    </div>
-
-    <!-- 패널 3: 브랜딩-전시 폴더 -->
-    <div class="gallery-panel" id="p3">
-      <div class="gallery-grid">
-        <img data-src="./recode-img-optimized/브랜딩-전시/brand-consulting-01-720.jpg" data-srcset="./recode-img-optimized/브랜딩-전시/brand-consulting-01-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/brand-consulting-01-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="브랜드 컨설팅" loading="lazy" decoding="async" width="720" height="540" />
-        <img data-src="./recode-img-optimized/브랜딩-전시/brand-consulting-02-720.jpg" data-srcset="./recode-img-optimized/브랜딩-전시/brand-consulting-02-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/brand-consulting-02-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="브랜드 컨설팅 현장" loading="lazy" decoding="async" width="720" height="540" />
-        <img data-src="./recode-img-optimized/브랜딩-전시/eco-project-research-720.jpg" data-srcset="./recode-img-optimized/브랜딩-전시/eco-project-research-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/eco-project-research-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="에코 프로젝트 리서치" loading="lazy" decoding="async" width="720" height="960" />
-        <img data-src="./recode-img-optimized/브랜딩-전시/exhibition-01-720.jpg" data-srcset="./recode-img-optimized/브랜딩-전시/exhibition-01-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/exhibition-01-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="DIF 전시회" loading="lazy" decoding="async" width="720" height="960" />
-        <img data-src="./recode-img-optimized/브랜딩-전시/exhibition-02-720.jpg" data-srcset="./recode-img-optimized/브랜딩-전시/exhibition-02-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/exhibition-02-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="DIF 전시회" loading="lazy" decoding="async" width="720" height="960" />
-        <img data-src="./recode-img-optimized/브랜딩-전시/food-brand-logo-720.jpg" data-srcset="./recode-img-optimized/브랜딩-전시/food-brand-logo-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/food-brand-logo-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="푸드 브랜드 로고 작업" loading="lazy" decoding="async" width="720" height="960" />
-        <img data-src="./recode-img-optimized/브랜딩-전시/keycap-01-720.jpg" data-srcset="./recode-img-optimized/브랜딩-전시/keycap-01-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/keycap-01-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="키캡 제품 디자인" loading="lazy" decoding="async" width="720" height="540" />
-        <img data-src="./recode-img-optimized/브랜딩-전시/keycap-05-720.jpg" data-srcset="./recode-img-optimized/브랜딩-전시/keycap-05-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/keycap-05-720.jpg 720w" sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="키캡 목업" loading="lazy" decoding="async" width="720" height="540" />
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ④ 3대 트랙 -->
-  <section class="section tracks">
-    <div class="tag">Core Tracks</div>
-    <h2 class="section-title reveal">현재 단계에 맞는<br />3가지 트랙</h2>
-    <p class="section-sub reveal">학부생·취업 준비자·예비 창업자에게 필요한 결과물이 다르기 때문에, 시작점부터 트랙을 다르게 설계합니다.</p>
-
-    <div class="track-card t1 reveal">
-      <picture class="track-media" aria-hidden="true">
-        <img src="./recode-img-optimized/tracks/track_a-384.jpg" srcset="./recode-img-optimized/tracks/track_a-384.jpg 384w, ./recode-img-optimized/tracks/track_a-768.jpg 768w" sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="" width="768" height="576" loading="lazy" decoding="async" />
-      </picture>
-      <p class="track-num">TRACK A · 학부생 과정</p>
-      <h3 class="track-name">진로 탐색과 실무형 프로젝트</h3>
-      <p class="track-desc">3~4학년 학부생이 학교 과제 수준을 넘어 실제 실무 프로젝트처럼 프로세스를 수행하고, 본인의 진로에 맞는 성취형 결과물을 만드는 과정입니다.</p>
-      <div class="track-items">
-        <span class="track-item">진로 탐색 및 디자인 방향 진단</span>
-        <span class="track-item">국내외 공모전과 실무형 프로젝트 수행</span>
-        <span class="track-item">AI 활용 디자인 프로세스 설계</span>
-      </div>
-    </div>
-
-    <div class="track-card t2 reveal">
-      <picture class="track-media" aria-hidden="true">
-        <img src="./recode-img-optimized/tracks/track_b-384.jpg" srcset="./recode-img-optimized/tracks/track_b-384.jpg 384w, ./recode-img-optimized/tracks/track_b-768.jpg 768w" sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="" width="768" height="576" loading="lazy" decoding="async" />
-      </picture>
-      <p class="track-num">TRACK B · 취업 준비 과정</p>
-      <h3 class="track-name">포트폴리오와 취업 패키지</h3>
-      <p class="track-desc">졸업예정자, 취업준비생, 이직자가 직무 방향을 탐색하고 지원 가능한 수준의 포트폴리오·이력서·자기소개서·면접 스토리를 완성하는 과정입니다.</p>
-      <div class="track-items">
-        <span class="track-item">직무 방향 진단과 기존 작업물 분석</span>
-        <span class="track-item">대표 프로젝트 리빌드와 포트폴리오 편집</span>
-        <span class="track-item">이력서·자기소개서·모의면접·지원 플랜</span>
-      </div>
-    </div>
-
-    <div class="track-card t3 reveal">
-      <picture class="track-media" aria-hidden="true">
-        <img src="./recode-img-optimized/tracks/track_c-384.jpg" srcset="./recode-img-optimized/tracks/track_c-384.jpg 384w, ./recode-img-optimized/tracks/track_c-768.jpg 768w" sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="" width="768" height="576" loading="lazy" decoding="async" />
-      </picture>
-      <p class="track-num">TRACK C · 창업·프리랜서 과정</p>
-      <h3 class="track-name">아이템 개발과 실행 로드맵</h3>
-      <p class="track-desc">예비창업자와 프리랜서 희망자가 경력·아이템 가능성을 분석하고, 사업기획서·지원사업·자금 확보까지 연결되는 실행 계획을 만드는 과정입니다.</p>
-      <div class="track-items">
-        <span class="track-item">커리어·창업 진단과 개인 포지셔닝</span>
-        <span class="track-item">아이템 정의·경쟁 분석·콘셉트 전략</span>
-        <span class="track-item">제안서·사업기획서·수익화 액션 플랜</span>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ⑤ PROGRAMS -->
-  <section class="section">
-    <div class="tag">Programs</div>
-    <h2 class="section-title reveal">6가지 핵심<br />세부 프로그램</h2>
-    <p class="section-sub reveal">트랙에 따라 선택·조합되는 실전 중심 프로그램입니다.</p>
-
-    <div class="programs-grid">
-      <div class="prog-card reveal">
-        <span class="prog-icon">🗂️</span>
-        <p class="prog-title">합격하는 포트폴리오 제작</p>
-        <p class="prog-desc">기업이 원하는 구성·스토리텔링으로 100% 완성도 있는 포트폴리오 구축</p>
-      </div>
-      <div class="prog-card reveal">
-        <span class="prog-icon">🤖</span>
-        <p class="prog-title">디자인 업무 × AI 활용</p>
-        <p class="prog-desc">실무에서 바로 쓰는 AI 툴 활용법으로 생산성을 2배 높이는 방법</p>
-      </div>
-      <div class="prog-card reveal">
-        <span class="prog-icon">🏆</span>
-        <p class="prog-title">공모전 수상 전략</p>
-        <p class="prog-desc">심사위원이 선택하는 기준을 역으로 분석해 수상 확률을 높이는 준비법</p>
-      </div>
-      <div class="prog-card reveal">
-        <span class="prog-icon">🖨️</span>
-        <p class="prog-title">3D 프린팅 &amp; 목업 제작</p>
-        <p class="prog-desc">아이디어를 실물로 구현하는 프로토타이핑 전 과정 실습</p>
-      </div>
-      <div class="prog-card reveal">
-        <span class="prog-icon">✏️</span>
-        <p class="prog-title">아이디어 발상 &amp; 드로잉</p>
-        <p class="prog-desc">막히는 순간을 돌파하는 발상 기법과 빠른 시각화 스케치 훈련</p>
-      </div>
-      <div class="prog-card reveal">
-        <span class="prog-icon">🔄</span>
-        <p class="prog-title">서비스 디자인 프로세스</p>
-        <p class="prog-desc">사용자 리서치부터 프로토타입까지 서비스 디자인 전 과정 실습</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ⑥ CURRICULUM -->
-  <section class="section curriculum">
-    <div class="tag">16 Week Curriculum</div>
-    <h2 class="section-title reveal">트랙마다 다르게<br />완성되는 16주</h2>
-    <p class="section-sub reveal">DIF의 과정은 목표별로 나뉩니다. 학부생은 프로젝트와 공모전, 취업 준비자는 포트폴리오와 지원 패키지, 예비 창업자는 아이템과 실행 계획까지 완성합니다.</p>
-
-    <div class="coaching-points reveal">
-      <div class="coaching-point">
-        <strong>1:1</strong>
-        <span>대면 코칭으로 작업의 방향과 완성도를 직접 피드백합니다.</span>
-      </div>
-      <div class="coaching-point">
-        <strong>현장</strong>
-        <span>다양한 학생들과 오프라인에서 연결되는 네트워킹을 만듭니다.</span>
-      </div>
-    </div>
-
-    <details class="track-detail a reveal" open>
-      <summary>
-        <div>
-          <span class="detail-label">TRACK A · 학부생 과정</span>
-          <h3 class="detail-title">진로 탐색과 실무형 프로젝트</h3>
-          <p class="detail-desc">3~4학년 학부생이 학교 과제 수준을 넘어 실제 실무 프로젝트처럼 프로세스를 수행하고, 진로에 맞는 성취형 결과물을 만드는 과정입니다.</p>
-        </div>
-      </summary>
-    </details>
-
-    <details class="track-detail b reveal">
-      <summary>
-        <div>
-          <span class="detail-label">TRACK B · 취업 준비 과정</span>
-          <h3 class="detail-title">포트폴리오와 취업 패키지</h3>
-          <p class="detail-desc">졸업예정자, 취업준비생, 이직자가 직무 방향을 탐색하고 지원 가능한 수준의 포트폴리오·이력서·자기소개서·면접 스토리를 완성하는 과정입니다.</p>
-        </div>
-      </summary>
-    </details>
-
-    <details class="track-detail c reveal">
-      <summary>
-        <div>
-          <span class="detail-label">TRACK C · 창업·프리랜서 과정</span>
-          <h3 class="detail-title">아이템 개발과 실행 로드맵</h3>
-          <p class="detail-desc">예비창업자와 프리랜서 희망자가 경력·아이템 가능성을 분석하고, 사업기획서·지원사업·자금 확보까지 연결되는 실행 계획을 만드는 과정입니다.</p>
-        </div>
-      </summary>
-    </details>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ⑥ ACTIVITIES -->
-  <section class="section activities">
-    <div class="tag">Activities</div>
-    <h2 class="section-title reveal">배움을 넘어<br />실전으로 나갑니다</h2>
-    <p class="section-sub reveal">DIF의 활동은 강의실 안에 머물지 않습니다.</p>
-
-    <div class="activity-list">
-      <div class="activity-item reveal">
-        <div class="activity-icon-wrap">🎨</div>
-        <div class="activity-text">
-          <h4>기수별 전시회 개최(예정)</h4>
-          <p>결과물을 실제 전시 형태로 선보입니다. 제작한 작업이 관객을 만나는 순간, 포트폴리오의 무게가 달라집니다.</p>
+      <!-- 패널 1: 강의-프로젝트 폴더 -->
+      <div class="gallery-panel active reveal" id="p1">
+        <div class="gallery-grid">
+          <img src="./recode-img-optimized/강의-프로젝트/design-lecture-03-720.jpg"
+            srcset="./recode-img-optimized/강의-프로젝트/design-lecture-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/design-lecture-03-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="디자인 강의 현장" loading="lazy" decoding="async"
+            width="720" height="960" />
+          <img src="./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg"
+            srcset="./recode-img-optimized/강의-프로젝트/design-lecture-04-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/design-lecture-04-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="디자인 강의" loading="lazy" decoding="async"
+            width="720" height="529" />
+          <img src="./recode-img-optimized/강의-프로젝트/lecture-03-720.jpg"
+            srcset="./recode-img-optimized/강의-프로젝트/lecture-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/lecture-03-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="강의 현장" loading="lazy" decoding="async"
+            width="720" height="405" />
+          <img src="./recode-img-optimized/강의-프로젝트/service-design-project-02-720.jpg"
+            srcset="./recode-img-optimized/강의-프로젝트/service-design-project-02-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-project-02-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 프로젝트" loading="lazy"
+            decoding="async" width="720" height="960" />
+          <img src="./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg"
+            srcset="./recode-img-optimized/강의-프로젝트/service-design-project-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-project-03-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 현장" loading="lazy" decoding="async"
+            width="720" height="960" />
+          <img src="./recode-img-optimized/강의-프로젝트/service-design-village-01-720.jpg"
+            srcset="./recode-img-optimized/강의-프로젝트/service-design-village-01-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-village-01-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 마을" loading="lazy" decoding="async"
+            width="720" height="540" />
+          <img src="./recode-img-optimized/강의-프로젝트/service-design-village-03-720.jpg"
+            srcset="./recode-img-optimized/강의-프로젝트/service-design-village-03-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-village-03-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 마을" loading="lazy" decoding="async"
+            width="720" height="540" />
+          <img src="./recode-img-optimized/강의-프로젝트/service-design-village-09-720.jpg"
+            srcset="./recode-img-optimized/강의-프로젝트/service-design-village-09-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-village-09-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 마을" loading="lazy" decoding="async"
+            width="720" height="540" />
+          <img src="./recode-img-optimized/강의-프로젝트/service-design-village-14-720.jpg"
+            srcset="./recode-img-optimized/강의-프로젝트/service-design-village-14-360.jpg 360w, ./recode-img-optimized/강의-프로젝트/service-design-village-14-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="서비스 디자인 마을" loading="lazy" decoding="async"
+            width="720" height="540" />
         </div>
       </div>
-      <div class="activity-item reveal">
-        <div class="activity-icon-wrap">🏙️</div>
-        <div class="activity-text">
-          <h4>로컬 연계 실무 프로젝트</h4>
-          <p>지역 기업·브랜드와 실제 협업 프로젝트를 진행합니다. 가상 과제가 아닌, 결과물이 실제로 쓰이는 경험을 합니다.</p>
+
+      <!-- 패널 2: 컨설팅-포트폴리오 폴더 -->
+      <div class="gallery-panel" id="p2">
+        <div class="gallery-grid">
+          <img data-src="./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-01-720.jpg"
+            data-srcset="./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-01-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-01-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="에그 목업" loading="lazy" decoding="async"
+            width="720" height="1080" />
+          <img data-src="./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-02-720.jpg"
+            data-srcset="./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-02-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/egg-mockup-02-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="에그 목업" loading="lazy" decoding="async"
+            width="720" height="1080" />
+          <img data-src="./recode-img-optimized/컨설팅-포트폴리오/kick-ver2-sketch-03-720.jpg"
+            data-srcset="./recode-img-optimized/컨설팅-포트폴리오/kick-ver2-sketch-03-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/kick-ver2-sketch-03-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="스케치 작업" loading="lazy" decoding="async"
+            width="720" height="961" />
+          <img data-src="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-01-720.jpg"
+            data-srcset="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-01-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-01-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="컨설팅 목업" loading="lazy" decoding="async"
+            width="720" height="540" />
+          <img data-src="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-04-720.jpg"
+            data-srcset="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-04-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-mockup-04-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="컨설팅 목업" loading="lazy" decoding="async"
+            width="720" height="493" />
+          <img data-src="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-01-720.jpg"
+            data-srcset="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-01-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-01-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="컨설팅 스케치" loading="lazy" decoding="async"
+            width="720" height="524" />
+          <img data-src="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-02-720.jpg"
+            data-srcset="./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-02-360.jpg 360w, ./recode-img-optimized/컨설팅-포트폴리오/lecture-consulting-sketch-02-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="컨설팅 스케치" loading="lazy" decoding="async"
+            width="720" height="540" />
         </div>
       </div>
-      <div class="activity-item reveal">
-        <div class="activity-icon-wrap">🤝</div>
-        <div class="activity-text">
-          <h4>실무 네트워킹 &amp; 창업 지원</h4>
-          <p>현직 디자이너·창업가와의 네트워킹으로 기회를 만듭니다. 수료 후에도 이어지는 DIF 커뮤니티가 함께합니다.</p>
+
+      <!-- 패널 3: 브랜딩-전시 폴더 -->
+      <div class="gallery-panel" id="p3">
+        <div class="gallery-grid">
+          <img data-src="./recode-img-optimized/브랜딩-전시/brand-consulting-01-720.jpg"
+            data-srcset="./recode-img-optimized/브랜딩-전시/brand-consulting-01-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/brand-consulting-01-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="브랜드 컨설팅" loading="lazy" decoding="async"
+            width="720" height="540" />
+          <img data-src="./recode-img-optimized/브랜딩-전시/brand-consulting-02-720.jpg"
+            data-srcset="./recode-img-optimized/브랜딩-전시/brand-consulting-02-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/brand-consulting-02-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="브랜드 컨설팅 현장" loading="lazy" decoding="async"
+            width="720" height="540" />
+          <img data-src="./recode-img-optimized/브랜딩-전시/eco-project-research-720.jpg"
+            data-srcset="./recode-img-optimized/브랜딩-전시/eco-project-research-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/eco-project-research-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="에코 프로젝트 리서치" loading="lazy" decoding="async"
+            width="720" height="960" />
+          <img data-src="./recode-img-optimized/브랜딩-전시/exhibition-01-720.jpg"
+            data-srcset="./recode-img-optimized/브랜딩-전시/exhibition-01-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/exhibition-01-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="DIF 전시회" loading="lazy" decoding="async"
+            width="720" height="960" />
+          <img data-src="./recode-img-optimized/브랜딩-전시/exhibition-02-720.jpg"
+            data-srcset="./recode-img-optimized/브랜딩-전시/exhibition-02-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/exhibition-02-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="DIF 전시회" loading="lazy" decoding="async"
+            width="720" height="960" />
+          <img data-src="./recode-img-optimized/브랜딩-전시/food-brand-logo-720.jpg"
+            data-srcset="./recode-img-optimized/브랜딩-전시/food-brand-logo-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/food-brand-logo-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="푸드 브랜드 로고 작업" loading="lazy"
+            decoding="async" width="720" height="960" />
+          <img data-src="./recode-img-optimized/브랜딩-전시/keycap-01-720.jpg"
+            data-srcset="./recode-img-optimized/브랜딩-전시/keycap-01-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/keycap-01-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="키캡 제품 디자인" loading="lazy" decoding="async"
+            width="720" height="540" />
+          <img data-src="./recode-img-optimized/브랜딩-전시/keycap-05-720.jpg"
+            data-srcset="./recode-img-optimized/브랜딩-전시/keycap-05-360.jpg 360w, ./recode-img-optimized/브랜딩-전시/keycap-05-720.jpg 720w"
+            sizes="(max-width: 430px) calc((100vw - 56px) / 2), 187px" alt="키캡 목업" loading="lazy" decoding="async"
+            width="720" height="540" />
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- ⑦ FOR WHOM -->
-  <section class="section">
-    <div class="tag">For Whom</div>
-    <h2 class="section-title reveal">DIF가 필요한<br />바로 당신</h2>
-    <div class="whom-list">
-      <div class="whom-card reveal">
-        <div class="whom-badge b1">학생</div>
-        <div class="whom-text">
-          <h4>디자인 전공 재학생</h4>
-          <p>학교 과제 너머의 실전 감각이 필요한 분. 졸업 전에 실무·취업·창업의 그림을 그려두고 싶은 분.</p>
+    <!-- ④ 3대 트랙 -->
+    <section class="section tracks">
+      <div class="tag">Core Tracks</div>
+      <h2 class="section-title reveal">현재 단계에 맞는<br />3가지 트랙</h2>
+      <p class="section-sub reveal">학부생·취업 준비자·예비 창업자에게 필요한 결과물이 다르기 때문에, 시작점부터 트랙을 다르게 설계합니다.</p>
+
+      <div class="track-card t1 reveal">
+        <picture class="track-media" aria-hidden="true">
+          <img src="./recode-img-optimized/tracks/track_a-384.jpg"
+            srcset="./recode-img-optimized/tracks/track_a-384.jpg 384w, ./recode-img-optimized/tracks/track_a-768.jpg 768w"
+            sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="" width="768" height="576" loading="lazy"
+            decoding="async" />
+        </picture>
+        <p class="track-num">TRACK A · 학부생 과정</p>
+        <h3 class="track-name">진로 탐색과 실무형 프로젝트</h3>
+        <p class="track-desc">3~4학년 학부생이 학교 과제 수준을 넘어 실제 실무 프로젝트처럼 프로세스를 수행하고, 본인의 진로에 맞는 성취형 결과물을 만드는 과정입니다.</p>
+        <div class="track-items">
+          <span class="track-item">진로 탐색 및 디자인 방향 진단</span>
+          <span class="track-item">국내외 공모전과 실무형 프로젝트 수행</span>
+          <span class="track-item">AI 활용 디자인 프로세스 설계</span>
         </div>
       </div>
-      <div class="whom-card reveal">
-        <div class="whom-badge b2">취준생</div>
-        <div class="whom-text">
-          <h4>취업을 준비하는 디자이너</h4>
-          <p>포트폴리오 방향을 잡지 못해 멈춰있는 분. 혼자 하는 취업 준비가 막막한 분.</p>
+
+      <div class="track-card t2 reveal">
+        <picture class="track-media" aria-hidden="true">
+          <img src="./recode-img-optimized/tracks/track_b-384.jpg"
+            srcset="./recode-img-optimized/tracks/track_b-384.jpg 384w, ./recode-img-optimized/tracks/track_b-768.jpg 768w"
+            sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="" width="768" height="576" loading="lazy"
+            decoding="async" />
+        </picture>
+        <p class="track-num">TRACK B · 취업 준비 과정</p>
+        <h3 class="track-name">포트폴리오와 취업 패키지</h3>
+        <p class="track-desc">졸업예정자, 취업준비생, 이직자가 직무 방향을 탐색하고 지원 가능한 수준의 포트폴리오·이력서·자기소개서·면접 스토리를 완성하는 과정입니다.</p>
+        <div class="track-items">
+          <span class="track-item">직무 방향 진단과 기존 작업물 분석</span>
+          <span class="track-item">대표 프로젝트 리빌드와 포트폴리오 편집</span>
+          <span class="track-item">이력서·자기소개서·모의면접·지원 플랜</span>
         </div>
       </div>
-      <div class="whom-card reveal">
-        <div class="whom-badge b3">예비<br />창업자</div>
-        <div class="whom-text">
-          <h4>창업을 꿈꾸는 크리에이터</h4>
-          <p>좋은 아이디어는 있는데 어떻게 실행해야 할지 모르는 분. 브랜딩·자금·지원사업까지 한번에 파악하고 싶은 분.</p>
+
+      <div class="track-card t3 reveal">
+        <picture class="track-media" aria-hidden="true">
+          <img src="./recode-img-optimized/tracks/track_c-384.jpg"
+            srcset="./recode-img-optimized/tracks/track_c-384.jpg 384w, ./recode-img-optimized/tracks/track_c-768.jpg 768w"
+            sizes="(max-width: 430px) calc(100vw - 48px), 382px" alt="" width="768" height="576" loading="lazy"
+            decoding="async" />
+        </picture>
+        <p class="track-num">TRACK C · 창업·프리랜서 과정</p>
+        <h3 class="track-name">아이템 개발과 실행 로드맵</h3>
+        <p class="track-desc">예비창업자와 프리랜서 희망자가 경력·아이템 가능성을 분석하고, 사업기획서·지원사업·자금 확보까지 연결되는 실행 계획을 만드는 과정입니다.</p>
+        <div class="track-items">
+          <span class="track-item">커리어·창업 진단과 개인 포지셔닝</span>
+          <span class="track-item">아이템 정의·경쟁 분석·콘셉트 전략</span>
+          <span class="track-item">제안서·사업기획서·수익화 액션 플랜</span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- ⑧ FIRST COHORT OFFER -->
-  <section class="section offer">
-    <div class="tag">추천 트랙</div>
+    <!-- ⑤ PROGRAMS -->
+    <section class="section">
+      <div class="tag">Programs</div>
+      <h2 class="section-title reveal">6가지 핵심<br />세부 프로그램</h2>
+      <p class="section-sub reveal">트랙에 따라 선택·조합되는 실전 중심 프로그램입니다.</p>
 
-    <div class="path-heading reveal">
-      <h3>상황별 추천 트랙</h3>
-      <p>학년과 준비 단계에 따라 1차시·2차시를 어떻게 연결하면 좋은지 확인하세요.</p>
-    </div>
-
-    <div class="path-list">
-      <div class="path-item reveal">
-        <strong>진로 탐색과 졸전 전 역량 강화</strong>
-        <div class="path-meta">
-          <p><b>대상</b><span>3학년 1학기 학부생</span></p>
-          <p><b>과정</b><span>1차시 트랙 A / 2차시 트랙 A</span></p>
+      <div class="programs-grid">
+        <div class="prog-card reveal">
+          <span class="prog-icon">🗂️</span>
+          <p class="prog-title">합격하는 포트폴리오 제작</p>
+          <p class="prog-desc">기업이 원하는 구성·스토리텔링으로 100% 완성도 있는 포트폴리오 구축</p>
+        </div>
+        <div class="prog-card reveal">
+          <span class="prog-icon">🤖</span>
+          <p class="prog-title">디자인 업무 × AI 활용</p>
+          <p class="prog-desc">실무에서 바로 쓰는 AI 툴 활용법으로 생산성을 2배 높이는 방법</p>
+        </div>
+        <div class="prog-card reveal">
+          <span class="prog-icon">🏆</span>
+          <p class="prog-title">공모전 수상 전략</p>
+          <p class="prog-desc">심사위원이 선택하는 기준을 역으로 분석해 수상 확률을 높이는 준비법</p>
+        </div>
+        <div class="prog-card reveal">
+          <span class="prog-icon">🖨️</span>
+          <p class="prog-title">3D 프린팅 &amp; 목업 제작</p>
+          <p class="prog-desc">아이디어를 실물로 구현하는 프로토타이핑 전 과정 실습</p>
+        </div>
+        <div class="prog-card reveal">
+          <span class="prog-icon">✏️</span>
+          <p class="prog-title">아이디어 발상 &amp; 드로잉</p>
+          <p class="prog-desc">막히는 순간을 돌파하는 발상 기법과 빠른 시각화 스케치 훈련</p>
+        </div>
+        <div class="prog-card reveal">
+          <span class="prog-icon">🔄</span>
+          <p class="prog-title">서비스 디자인 프로세스</p>
+          <p class="prog-desc">사용자 리서치부터 프로토타입까지 서비스 디자인 전 과정 실습</p>
         </div>
       </div>
-      <div class="path-item reveal">
-        <strong>취업 준비를 위한 이상적인 연계과정</strong>
-        <div class="path-meta">
-          <p><b>대상</b><span>4학년 1학기 학부생</span></p>
-          <p><b>과정</b><span>1차시 트랙 A / 2차시 트랙 B</span></p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ⑥ CURRICULUM -->
+    <section class="section curriculum">
+      <div class="tag">16 Week Curriculum</div>
+      <h2 class="section-title reveal">트랙마다 다르게<br />완성되는 16주</h2>
+      <p class="section-sub reveal">DIF의 과정은 목표별로 나뉩니다. 학부생은 프로젝트와 공모전, 취업 준비자는 포트폴리오와 지원 패키지, 예비 창업자는 아이템과 실행 계획까지
+        완성합니다.</p>
+
+      <div class="coaching-points reveal">
+        <div class="coaching-point">
+          <strong>1:1</strong>
+          <span>대면 코칭으로 작업의 방향과 완성도를 직접 피드백합니다.</span>
+        </div>
+        <div class="coaching-point">
+          <strong>현장</strong>
+          <span>다양한 학생들과 오프라인에서 연결되는 네트워킹을 만듭니다.</span>
         </div>
       </div>
-      <div class="path-item reveal">
-        <strong>졸전 후 단기간으로 취업준비</strong>
-        <div class="path-meta">
-          <p><b>대상</b><span>4학년 졸업예정자</span></p>
-          <p><b>과정</b><span>2차시 트랙 B</span></p>
+
+      <details class="track-detail a reveal" open>
+        <summary>
+          <div>
+            <span class="detail-label">TRACK A · 학부생 과정</span>
+            <h3 class="detail-title">진로 탐색과 실무형 프로젝트</h3>
+            <p class="detail-desc">3~4학년 학부생이 학교 과제 수준을 넘어 실제 실무 프로젝트처럼 프로세스를 수행하고, 진로에 맞는 성취형 결과물을 만드는 과정입니다.</p>
+          </div>
+        </summary>
+      </details>
+
+      <details class="track-detail b reveal">
+        <summary>
+          <div>
+            <span class="detail-label">TRACK B · 취업 준비 과정</span>
+            <h3 class="detail-title">포트폴리오와 취업 패키지</h3>
+            <p class="detail-desc">졸업예정자, 취업준비생, 이직자가 직무 방향을 탐색하고 지원 가능한 수준의 포트폴리오·이력서·자기소개서·면접 스토리를 완성하는 과정입니다.</p>
+          </div>
+        </summary>
+      </details>
+
+      <details class="track-detail c reveal">
+        <summary>
+          <div>
+            <span class="detail-label">TRACK C · 창업·프리랜서 과정</span>
+            <h3 class="detail-title">아이템 개발과 실행 로드맵</h3>
+            <p class="detail-desc">예비창업자와 프리랜서 희망자가 경력·아이템 가능성을 분석하고, 사업기획서·지원사업·자금 확보까지 연결되는 실행 계획을 만드는 과정입니다.</p>
+          </div>
+        </summary>
+      </details>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ⑥ ACTIVITIES -->
+    <section class="section activities">
+      <div class="tag">Activities</div>
+      <h2 class="section-title reveal">배움을 넘어<br />실전으로 나갑니다</h2>
+      <p class="section-sub reveal">DIF의 활동은 강의실 안에 머물지 않습니다.</p>
+
+      <div class="activity-list">
+        <div class="activity-item reveal">
+          <div class="activity-icon-wrap">🎨</div>
+          <div class="activity-text">
+            <h4>기수별 전시회 개최(예정)</h4>
+            <p>결과물을 실제 전시 형태로 선보입니다. 제작한 작업이 관객을 만나는 순간, 포트폴리오의 무게가 달라집니다.</p>
+          </div>
+        </div>
+        <div class="activity-item reveal">
+          <div class="activity-icon-wrap">🏙️</div>
+          <div class="activity-text">
+            <h4>로컬 연계 실무 프로젝트</h4>
+            <p>지역 기업·브랜드와 실제 협업 프로젝트를 진행합니다. 가상 과제가 아닌, 결과물이 실제로 쓰이는 경험을 합니다.</p>
+          </div>
+        </div>
+        <div class="activity-item reveal">
+          <div class="activity-icon-wrap">🤝</div>
+          <div class="activity-text">
+            <h4>실무 네트워킹 &amp; 창업 지원</h4>
+            <p>현직 디자이너·창업가와의 네트워킹으로 기회를 만듭니다. 수료 후에도 이어지는 DIF 커뮤니티가 함께합니다.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <!-- ⑧ RECRUITMENT -->
-  <section class="section recruit">
-    <div class="tag">Recruitment</div>
-    <h2 class="section-title reveal">모집 및 운영 안내</h2>
-    <p class="section-sub reveal">1기 운영안 기준으로 상담 후 현재 신청 가능한 차수와 적용 특가를 안내합니다.</p>
-
-    <div class="recruit-grid">
-      <div class="recruit-box reveal">
-        <p class="label">모집 시기</p>
-        <p class="value"><em>6–9월</em><br />12–3월</p>
+    <!-- ⑦ FOR WHOM -->
+    <section class="section">
+      <div class="tag">For Whom</div>
+      <h2 class="section-title reveal">DIF가 필요한<br />바로 당신</h2>
+      <div class="whom-list">
+        <div class="whom-card reveal">
+          <div class="whom-badge b1">학생</div>
+          <div class="whom-text">
+            <h4>디자인 전공 재학생</h4>
+            <p>학교 과제 너머의 실전 감각이 필요한 분. 졸업 전에 실무·취업·창업의 그림을 그려두고 싶은 분.</p>
+          </div>
+        </div>
+        <div class="whom-card reveal">
+          <div class="whom-badge b2">취준생</div>
+          <div class="whom-text">
+            <h4>취업을 준비하는 디자이너</h4>
+            <p>포트폴리오 방향을 잡지 못해 멈춰있는 분. 혼자 하는 취업 준비가 막막한 분.</p>
+          </div>
+        </div>
+        <div class="whom-card reveal">
+          <div class="whom-badge b3">예비<br />창업자</div>
+          <div class="whom-text">
+            <h4>창업을 꿈꾸는 크리에이터</h4>
+            <p>좋은 아이디어는 있는데 어떻게 실행해야 할지 모르는 분. 브랜딩·자금·지원사업까지 한번에 파악하고 싶은 분.</p>
+          </div>
+        </div>
       </div>
-      <div class="recruit-box reveal">
-        <p class="label">운영 기간</p>
-        <p class="value">트랙별<br /><em>16주</em></p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ⑧ FIRST COHORT OFFER -->
+    <section class="section offer">
+      <div class="tag">추천 트랙</div>
+
+      <div class="path-heading reveal">
+        <h3>상황별 추천 트랙</h3>
+        <p>학년과 준비 단계에 따라 1차시·2차시를 어떻게 연결하면 좋은지 확인하세요.</p>
       </div>
-      <div class="recruit-box reveal">
-        <p class="label">참가 비용</p>
-        <p class="value"><em>1기</em><br />특가</p>
+
+      <div class="path-list">
+        <div class="path-item reveal">
+          <strong>진로 탐색과 졸전 전 역량 강화</strong>
+          <div class="path-meta">
+            <p><b>대상</b><span>3학년 1학기 학부생</span></p>
+            <p><b>과정</b><span>1차시 트랙 A / 2차시 트랙 A</span></p>
+          </div>
+        </div>
+        <div class="path-item reveal">
+          <strong>취업 준비를 위한 이상적인 연계과정</strong>
+          <div class="path-meta">
+            <p><b>대상</b><span>4학년 1학기 학부생</span></p>
+            <p><b>과정</b><span>1차시 트랙 A / 2차시 트랙 B</span></p>
+          </div>
+        </div>
+        <div class="path-item reveal">
+          <strong>졸전 후 단기간으로 취업준비</strong>
+          <div class="path-meta">
+            <p><b>대상</b><span>4학년 졸업예정자</span></p>
+            <p><b>과정</b><span>2차시 트랙 B</span></p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="recruit-note reveal">
-      <p><strong>상담을 통해 현재 단계에 맞는 트랙을 제안합니다.</strong></p>
-      <p>과정 중 목표와 준비 상황에 맞는 차수를 안내하고, 1기 특가 적용 조건도 함께 확인합니다.</p>
-    </div>
-  </section>
+    <div class="divider"></div>
 
-  <div class="divider"></div>
+    <!-- ⑧ RECRUITMENT -->
+    <section class="section recruit">
+      <div class="tag">Recruitment</div>
+      <h2 class="section-title reveal">모집 및 운영 안내</h2>
+      <p class="section-sub reveal">1기 운영안 기준으로 상담 후 현재 신청 가능한 차수와 적용 특가를 안내합니다.</p>
 
-  <!-- ⑨ CTA -->
-  <section class="section cta" id="cta">
-    <p class="cta-eyebrow reveal">Ready to Start?</p>
-    <h2 class="cta-title reveal">지금이 바로<br /><em>방향을 잡을</em> 때입니다.</h2>
-    <p class="cta-desc reveal">
-      망설이는 시간이 길어질수록 자리는 줄어듭니다.<br />
-      무료 상담을 통해 나에게 맞는 트랙과 일정을 확인해보세요.
-    </p>
-    <a href="https://forms.gle/sLNrHw4ThXeVKhcN8" class="btn-cta reveal">
-      설명회 참가 신청하기
-    </a>
-    <p class="cta-sub reveal">설명회에서 DIF 프로그램에 대해 상세히 알려드립니다. <br /> 부담없이 신청하세요!</p>
-  </section>
-
-  <footer>
-    <strong>DIF — Design Inner Force</strong><br />
-    디자인 컨설팅 프로젝트 그룹<br />
-    © 2026 DIF. All rights reserved.
-  </footer>
-
-</div>
-
-<div class="floating-popups" aria-live="polite">
-  <aside class="floating-popup" aria-label="설명회 얼리버드 프로모션 안내">
-    <button class="popup-close" type="button" aria-label="팝업 닫기">×</button>
-    <span class="popup-eyebrow">EARLY BIRD OPEN · 06/13(토)</span>
-    <h2 class="popup-main-title">6월 13일<br /> 설명회 당일 접수 시,<br /><em>50% 할인 프로모션 적용</em></h2>
-    <p class="popup-lead">설명회 당일 참석자에게만 적용되는<br />얼리버드 혜택입니다.</p>
-
-    <div class="popup-event-box">
-      <div class="popup-event-top">
-        <span class="event-label">LIMITED SEATS</span>
-        <strong class="event-title">선착순 12명 모집</strong>
-        <p class="event-desc"><span class="primary">이번 기수는 딱 12명만 받습니다.</span><span class="secondary">신청 접수 순서대로 트랙 · 일정 · 적용 혜택을 먼저 안내합니다.</span></p>
-        <a href="https://forms.gle/sLNrHw4ThXeVKhcN8" class="popup-cta">설명회 참가 신청하기</a>
+      <div class="recruit-grid">
+        <div class="recruit-box reveal">
+          <p class="label">모집 시기</p>
+          <p class="value"><em>6–9월</em><br />12–3월</p>
+        </div>
+        <div class="recruit-box reveal">
+          <p class="label">운영 기간</p>
+          <p class="value">트랙별<br /><em>16주</em></p>
+        </div>
+        <div class="recruit-box reveal">
+          <p class="label">참가 비용</p>
+          <p class="value"><em>1기</em><br />특가</p>
+        </div>
       </div>
-      <div class="popup-event-divider"></div>
-      <div class="popup-event-bottom">
-        <p class="followup-title"><span class="subline">2차 · 온라인 후속 접수,</span><span class="highlight">30% 할인 프로모션 적용</span></p>
-        <p class="followup-desc">06/13(월) ~ 06/17(수), 3일간 적용</p>
+
+      <div class="recruit-note reveal">
+        <p><strong>상담을 통해 현재 단계에 맞는 트랙을 제안합니다.</strong></p>
+        <p>과정 중 목표와 준비 상황에 맞는 차수를 안내하고, 1기 특가 적용 조건도 함께 확인합니다.</p>
       </div>
-    </div>
-  </aside>
-</div>
+    </section>
 
-<script>
-  /* 스크롤 페이드인 */
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    <div class="divider"></div>
 
-  /* 마소너리: 각 이미지 높이에 맞게 grid-row span 계산 */
-  function setImgAspect(img) {
-    const width = Number(img.getAttribute('width'));
-    const height = Number(img.getAttribute('height'));
-    if (width && height) img.style.aspectRatio = `${width} / ${height}`;
-  }
+    <!-- ⑨ CTA -->
+    <section class="section cta" id="cta">
+      <p class="cta-eyebrow reveal">Ready to Start?</p>
+      <h2 class="cta-title reveal">지금이 바로<br /><em>방향을 잡을</em> 때입니다.</h2>
+      <p class="cta-desc reveal">
+        망설이는 시간이 길어질수록 자리는 줄어듭니다.<br />
+        무료 상담을 통해 나에게 맞는 트랙과 일정을 확인해보세요.
+      </p>
+      <a href="https://forms.gle/sLNrHw4ThXeVKhcN8" class="btn-cta reveal">
+        설명회 참가 신청하기
+      </a>
+      <p class="cta-sub reveal">설명회에서 DIF 프로그램에 대해 상세히 알려드립니다. <br /> 부담없이 신청하세요!</p>
+    </section>
 
-  function loadPanelImages(panel) {
-    if (!panel) return;
+    <footer>
+      <strong>DIF — Design Inner Force</strong><br />
+      디자인 컨설팅 프로젝트 그룹<br />
+      © 2026 DIF. All rights reserved.
+    </footer>
 
-    panel.querySelectorAll('img[data-src]').forEach(img => {
-      setImgAspect(img);
-      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
-      img.src = img.dataset.src;
-      img.removeAttribute('data-src');
-      img.removeAttribute('data-srcset');
-    });
-  }
+  </div>
 
-  const galleryPreloaders = [];
+  <div class="floating-popups" aria-live="polite">
+    <aside class="floating-popup" aria-label="설명회 얼리버드 프로모션 안내">
+      <button class="popup-close" type="button" aria-label="팝업 닫기">×</button>
+      <span class="popup-eyebrow">EARLY BIRD OPEN · 06/13(토)</span>
+      <h2 class="popup-main-title">6월 13일<br /> 설명회 당일 접수 시,<br /><em>50% 할인 프로모션 적용</em></h2>
+      <p class="popup-lead">설명회 당일 참석자에게만 적용되는<br />얼리버드 혜택입니다.</p>
 
-  function preloadPanelImages(panel) {
-    if (!panel) return;
+      <div class="popup-event-box">
+        <div class="popup-event-top">
+          <span class="event-label">LIMITED SEATS</span>
+          <strong class="event-title">선착순 12명 모집</strong>
+          <p class="event-desc"><span class="primary">이번 기수는 딱 12명만 받습니다.</span><span class="secondary">신청 접수 순서대로 트랙 ·
+              일정 · 적용 혜택을 먼저 안내합니다.</span></p>
+          <a href="https://forms.gle/sLNrHw4ThXeVKhcN8" class="popup-cta">설명회 참가 신청하기</a>
+        </div>
+        <div class="popup-event-divider"></div>
+        <div class="popup-event-bottom">
+          <p class="followup-title"><span class="subline">2차 · 온라인 후속 접수,</span><span class="highlight">30% 할인 프로모션
+              적용</span></p>
+          <p class="followup-desc">06/13(월) ~ 06/17(수), 3일간 적용</p>
+        </div>
+      </div>
+    </aside>
+  </div>
 
-    panel.querySelectorAll('img[data-src]').forEach(img => {
-      if (img.dataset.preloaded) return;
+  <script>
+    /* 스크롤 페이드인 */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-      const preloader = new Image();
-      preloader.decoding = 'async';
-      preloader.sizes = img.sizes || '';
-      if (img.dataset.srcset) preloader.srcset = img.dataset.srcset;
-      preloader.src = img.dataset.src;
-      galleryPreloaders.push(preloader);
-      img.dataset.preloaded = 'true';
-    });
-  }
-
-  function preloadDeferredGalleryImages() {
-    document.querySelectorAll('.gallery-panel:not(.active)').forEach(preloadPanelImages);
-  }
-
-  function expectedImgHeight(img) {
-    const rect = img.getBoundingClientRect();
-    if (rect.height) return rect.height;
-
-    const renderedWidth = rect.width || img.parentElement?.getBoundingClientRect().width || 0;
-    const attrWidth = Number(img.getAttribute('width'));
-    const attrHeight = Number(img.getAttribute('height'));
-
-    if (renderedWidth && attrWidth && attrHeight) {
-      return renderedWidth * (attrHeight / attrWidth);
+    /* 마소너리: 각 이미지 높이에 맞게 grid-row span 계산 */
+    function setImgAspect(img) {
+      const width = Number(img.getAttribute('width'));
+      const height = Number(img.getAttribute('height'));
+      if (width && height) img.style.aspectRatio = `${width} / ${height}`;
     }
 
-    return 0;
-  }
+    function loadPanelImages(panel) {
+      if (!panel) return;
 
-  function spanImg(img) {
-    const gap = 8;
-    const height = expectedImgHeight(img);
-    if (!height) return;
+      panel.querySelectorAll('img[data-src]').forEach(img => {
+        setImgAspect(img);
+        if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        img.removeAttribute('data-srcset');
+      });
+    }
 
-    const span = Math.ceil((height + gap) / (1 + gap));
-    img.style.gridRowEnd = 'span ' + span;
-  }
-  function applyMasonry(scope = document) {
-    scope.querySelectorAll('.gallery-grid img').forEach(img => {
-      setImgAspect(img);
-      if (!img.currentSrc && !img.src && !img.dataset.src) return;
+    const galleryPreloaders = [];
 
-      spanImg(img);
+    function preloadPanelImages(panel) {
+      if (!panel) return;
 
-      if (!img.dataset.masonryBound) {
-        img.addEventListener('load', () => spanImg(img));
-        img.addEventListener('error', () => spanImg(img));
-        img.dataset.masonryBound = 'true';
+      panel.querySelectorAll('img[data-src]').forEach(img => {
+        if (img.dataset.preloaded) return;
+
+        const preloader = new Image();
+        preloader.decoding = 'async';
+        preloader.sizes = img.sizes || '';
+        if (img.dataset.srcset) preloader.srcset = img.dataset.srcset;
+        preloader.src = img.dataset.src;
+        galleryPreloaders.push(preloader);
+        img.dataset.preloaded = 'true';
+      });
+    }
+
+    function preloadDeferredGalleryImages() {
+      document.querySelectorAll('.gallery-panel:not(.active)').forEach(preloadPanelImages);
+    }
+
+    function expectedImgHeight(img) {
+      const rect = img.getBoundingClientRect();
+      if (rect.height) return rect.height;
+
+      const renderedWidth = rect.width || img.parentElement?.getBoundingClientRect().width || 0;
+      const attrWidth = Number(img.getAttribute('width'));
+      const attrHeight = Number(img.getAttribute('height'));
+
+      if (renderedWidth && attrWidth && attrHeight) {
+        return renderedWidth * (attrHeight / attrWidth);
       }
+
+      return 0;
+    }
+
+    function spanImg(img) {
+      const gap = 8;
+      const height = expectedImgHeight(img);
+      if (!height) return;
+
+      const span = Math.ceil((height + gap) / (1 + gap));
+      img.style.gridRowEnd = 'span ' + span;
+    }
+    function applyMasonry(scope = document) {
+      scope.querySelectorAll('.gallery-grid img').forEach(img => {
+        setImgAspect(img);
+        if (!img.currentSrc && !img.src && !img.dataset.src) return;
+
+        spanImg(img);
+
+        if (!img.dataset.masonryBound) {
+          img.addEventListener('load', () => spanImg(img));
+          img.addEventListener('error', () => spanImg(img));
+          img.dataset.masonryBound = 'true';
+        }
+      });
+    }
+    document.querySelectorAll('.gallery-grid img').forEach(setImgAspect);
+    const activeGalleryPanel = document.querySelector('.gallery-panel.active');
+    if (activeGalleryPanel) {
+      loadPanelImages(activeGalleryPanel);
+      applyMasonry(activeGalleryPanel);
+    }
+    window.addEventListener('resize', () => applyMasonry(document.querySelector('.gallery-panel.active') || document));
+
+    const gallerySection = document.querySelector('.gallery');
+    if (gallerySection) {
+      const preloadGalleryObserver = new IntersectionObserver((entries) => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(preloadDeferredGalleryImages, { timeout: 1200 });
+        } else {
+          setTimeout(preloadDeferredGalleryImages, 300);
+        }
+
+        preloadGalleryObserver.disconnect();
+      }, { rootMargin: '700px 0px', threshold: 0 });
+
+      preloadGalleryObserver.observe(gallerySection);
+    }
+
+    /* 갤러리 탭 */
+    document.querySelectorAll('.gtab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById(btn.dataset.panel);
+        panel.classList.add('active');
+        applyMasonry(panel);
+        loadPanelImages(panel);
+        requestAnimationFrame(() => applyMasonry(panel));
+      });
     });
-  }
-  document.querySelectorAll('.gallery-grid img').forEach(setImgAspect);
-  const activeGalleryPanel = document.querySelector('.gallery-panel.active');
-  if (activeGalleryPanel) {
-    loadPanelImages(activeGalleryPanel);
-    applyMasonry(activeGalleryPanel);
-  }
-  window.addEventListener('resize', () => applyMasonry(document.querySelector('.gallery-panel.active') || document));
 
-  const gallerySection = document.querySelector('.gallery');
-  if (gallerySection) {
-    const preloadGalleryObserver = new IntersectionObserver((entries) => {
-      if (!entries.some(entry => entry.isIntersecting)) return;
-
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(preloadDeferredGalleryImages, { timeout: 1200 });
-      } else {
-        setTimeout(preloadDeferredGalleryImages, 300);
-      }
-
-      preloadGalleryObserver.disconnect();
-    }, { rootMargin: '700px 0px', threshold: 0 });
-
-    preloadGalleryObserver.observe(gallerySection);
-  }
-
-  /* 갤러리 탭 */
-  document.querySelectorAll('.gtab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      const panel = document.getElementById(btn.dataset.panel);
-      panel.classList.add('active');
-      applyMasonry(panel);
-      loadPanelImages(panel);
-      requestAnimationFrame(() => applyMasonry(panel));
+    document.querySelectorAll('.popup-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.floating-popup')?.remove();
+      });
     });
-  });
 
-  document.querySelectorAll('.popup-close').forEach(btn => {
-    btn.addEventListener('click', () => {
-      btn.closest('.floating-popup')?.remove();
-    });
-  });
-
-</script>
+  </script>
 </body>
+
 </html>
